@@ -4,12 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="./api.js"></script>
-    <title>Votalperrico</title>
+    <title>Vota al Perrico</title>
     <link rel="stylesheet" href="./index.css" />
   </head>
   <body>
-    <h1>Votalperrico</h1>
-    <button id="add-1-perrico">Añadir 1 perrico más</button> <button>Añadir 5 perricos más</button>
+    <h1>Vota al Perrico</h1>
+    <div class="add-btns">
+      <button id="add-1-perrico">Añadir 1 más</button>
+      <button id="add-5-perricos">Añadir 5 más</button>
+      <button id="toggle-filters">Filtros ▼</button>
+    </div>
+    <div class="filter-btns-names" id="filter-container" style="display: none;"> 
+      <button id="Sky" class="filter-btn">Sky</button>
+      <button id="Arya" class="filter-btn">Arya</button>
+      <button id="Akira" class="filter-btn">Akira</button>
+      <button id="Toby" class="filter-btn">Toby</button>
+    </div>
     <div id="dog-list"></div>
   </body>
   <script src="./index.js"></script>
