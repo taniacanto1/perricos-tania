@@ -75,34 +75,32 @@ FILTROS
 // Variable para guardar el filtro actual
 let currentFilter = null;
 
+// Función para filtrar por nombre
 function filterByName(nameToFilter) {
-  document
-    .querySelectorAll(".filter-btn")
-    .forEach((btn) => btn.classList.remove("active")); // Quita la clase 'active' de todos los botones
+  document.querySelectorAll(".filter-btn").forEach((btn) => btn.classList.remove("active")); // Quita la clase 'active' de todos los botones
   if (currentFilter === nameToFilter) {
     currentFilter = null;
     renderPerricoArray(); // Si ya está filtrado por ese nombre, muestra todos
   } else {
     currentFilter = nameToFilter;
-    const dogsFiltered = perricosArray.filter(
-      (dog) => dog.name === nameToFilter
+    const dogsFiltered = perricosArray.filter((dog) => dog.name === nameToFilter
     );
     renderPerricoArray(dogsFiltered); // Filtra por el nuevo nombre
     document.querySelector(`#${nameToFilter}`).classList.add("active"); // Añade la clase 'active' al botón clickeado
   }
 }
 
-// Toggle para mostrar/ocultar filtros
+// Función para mostrar/ocultar filtros
 function toggleFilters() {
-  const filterContainer = document.querySelector("#filter-container");
-  const toggleBtn = document.querySelector("#toggle-filters");
+  const filterContainer = document.querySelector("#filter-container"); // ID del contenedor de filtros
+  const toggleBtn = document.querySelector("#toggle-filters"); // ID del botón de toggle
 
   if (filterContainer.style.display === "none") {
-    filterContainer.style.display = "block";
+    filterContainer.style.display = "block"; // Muestra los filtros
     toggleBtn.textContent = "Filtros ▲"; // Cambia el icono del botón
   } else {
-    filterContainer.style.display = "none";
-    toggleBtn.textContent = "Filtros ▼";
+    filterContainer.style.display = "none"; // Oculta los filtros
+    toggleBtn.textContent = "Filtros ▼"; 
   }
 }
 
@@ -117,7 +115,7 @@ document.querySelector("#add-1-perrico").addEventListener("click", function () {
 });
 
 document.querySelector("#add-5-perricos").addEventListener("click", function () {
-    add5Perricos();
+  add5Perricos();
   });
 
 document.querySelector("#Sky").addEventListener("click", function () {
@@ -138,4 +136,4 @@ document.querySelector("#Toby").addEventListener("click", function () {
 
 document.querySelector("#toggle-filters").addEventListener("click", function () {
   toggleFilters();
-  });
+});
