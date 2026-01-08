@@ -46,6 +46,7 @@ const add1Perrico = async () => {
   });
 
   clearFilters();
+  updateCounters(); 
 };
 
 const add5Perricos = async () => {
@@ -62,6 +63,7 @@ const add5Perricos = async () => {
   }
 
   clearFilters();
+  updateCounters();
 };
 
 /* -------------------------
@@ -80,6 +82,7 @@ function likeDislike(id, type) {
   }
 
   renderPerricoArray(currentFilter ? getFilteredArray() : perricosArray);
+  updateCounters();
 }
 
 /* -------------------------
@@ -162,6 +165,35 @@ function clearFilters() {
     .forEach(btn => btn.classList.remove("active"));
 
   renderPerricoArray();
+}
+
+/* -------------------------
+  CONTADOR DE FILTROS
+------------------------- */
+
+function updateCounters() {
+  // Contador para cada nombre
+  namesArray.forEach(name => {
+    const count = perricosArray.filter(dog => dog.name === name).length; // Contador de perros con ese nombre
+    const button = document.querySelector(`#${name} .count`);
+    if (button) {
+      button.textContent = count; // Actualiza el número
+    }
+  });
+  
+  // Contador para liked
+  const likedCount = perricosArray.filter(dog => dog.status === "like").length;
+  const likedBtn = document.querySelector("#Liked .count");
+  if (likedBtn) {
+    likedBtn.textContent = likedCount;
+  }
+  
+  // Contador para disliked
+  const dislikedCount = perricosArray.filter(dog => dog.status === "dislike").length;
+  const dislikedBtn = document.querySelector("#Disliked .count");
+  if (dislikedBtn) {
+    dislikedBtn.textContent = dislikedCount;
+  }
 }
 
 /* -------------------------

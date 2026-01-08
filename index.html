@@ -15,12 +15,14 @@
       <button id="toggle-filters">Filtros ▼</button>
     </div>
     <div id="filter-container" style="display: none;"> 
-      <button id="Sky" class="filter-btn">Sky</button>
-      <button id="Arya" class="filter-btn">Arya</button>
-      <button id="Akira" class="filter-btn">Akira</button>
-      <button id="Toby" class="filter-btn">Toby</button>
-      <button id="Liked" class="filter-btn">❤️ Liked</button>
-      <button id="Disliked" class="filter-btn">💔 Disliked</button>
+      <!-- Filtros por nombre con contador -->
+      <button id="Sky" class="filter-btn">Sky <span class="count">0</span></button>
+      <button id="Arya" class="filter-btn">Arya <span class="count">0</span></button>
+      <button id="Akira" class="filter-btn">Akira <span class="count">0</span></button>
+      <button id="Toby" class="filter-btn">Toby <span class="count">0</span></button>
+      <!-- Filtros por like/dislike con contador -->
+      <button id="Liked" class="filter-btn">❤️ Liked <span class="count">0</span></button>
+      <button id="Disliked" class="filter-btn">💔 Disliked <span class="count">0</span></button>
     </div>
     <div id="dog-list"></div>
   </body>

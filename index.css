@@ -50,6 +50,21 @@ Botones de filtro y añadir perros
   box-shadow: 0 6px 15px rgba(0, 114, 255, 0.4);
 }
 
+/* Contador en los filtros */
+.filter-btn .count {
+  display: inline-block;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+.filter-btn.active .count {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+
 /* 
 -----------------------
 Tarjetas de los perros
