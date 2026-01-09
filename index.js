@@ -1,20 +1,19 @@
-const perricosArray = [];
-const namesArray = ["Sky", "Arya", "Akira", "Toby"];
-let perricoId = 0;
+const perricosArray = []; // Array principal donde guardamos todos los perros. Cada perro es un objeto con id, imagen, nombre y status
+const namesArray = ["Sky", "Arya", "Akira", "Toby"]; // Array con los 4 nombres que asignaremos aleatoriamente
+let perricoId = 0; // Contador que incrementamos cada vez que añadimos un perro. Sirve como identificador único
 
 /* -------------------------
   RENDER PERRICOS
 ------------------------- */
 
 function renderPerricoArray(arrayToRender = perricosArray) {
-
-  const dogList = document.querySelector("#dog-list");
+  const dogList = document.querySelector("#dog-list"); // Seleccionamos el contenedor y lo vaciamos para evitar duplicados
   dogList.innerHTML = "";
+  
+  arrayToRender.forEach(dog => { 
 
-  arrayToRender.forEach(dog => {
-
-    const likeClass = dog.status === "like" ? "liked" : "";
-    const dislikeClass = dog.status === "dislike" ? "disliked" : "";
+    const likeClass = dog.status === "like" ? "liked" : ""; 
+    const dislikeClass = dog.status === "dislike" ? "disliked" : ""; // Comprobamos el estado del perro. Si tiene like/dislike, asignamos la clase CSS correspondiente para aplicar el efecto visual
 
     dogList.innerHTML += `
     <div class="card">
@@ -34,19 +33,18 @@ function renderPerricoArray(arrayToRender = perricosArray) {
 ------------------------- */
 
 const add1Perrico = async () => {
-
-  const perricoImg = await getRandomDogImage();
-  const randomName = namesArray[Math.floor(Math.random() * namesArray.length)];
+  const perricoImg = await getRandomDogImage(); // Llamamos a la API y esperamos la imagen
+  const randomName = namesArray[Math.floor(Math.random() * namesArray.length)]; // Generamos un índice aleatorio entre 0 y 3 para elegir un nombre del array
 
   perricosArray.push({
     id: perricoId++,
     image: perricoImg,
     name: randomName,
-    status: null
+    status: null // Sin like ni dislike
   });
 
-  clearFilters();
-  updateCounters(); 
+  clearFilters(); // Limpiamos los filtros 
+  updateCounters(); // Actualizamos los contadores
 };
 
 const add5Perricos = async () => {
@@ -71,17 +69,16 @@ const add5Perricos = async () => {
 ------------------------- */
 
 function likeDislike(id, type) {
-
-  const dog = perricosArray.find(d => d.id === id);
-  if (!dog) return;
+  const dog = perricosArray.find(d => d.id === id); // Buscamos el perro en el array con su id único
+  if (!dog) return; // Si no lo encontramos, salimos de la función
 
   if (type === "like") {
-    dog.status = dog.status === "like" ? null : "like";
+    dog.status = dog.status === "like" ? null : "like"; // Si el perro ya tiene like y le volvemos a dar like = lo quitamos 
   } else {
     dog.status = dog.status === "dislike" ? null : "dislike";
   }
 
-  renderPerricoArray(currentFilter ? getFilteredArray() : perricosArray);
+  renderPerricoArray(currentFilter ? getFilteredArray() : perricosArray); // Si hay un filtro activo, mostramos solo los filtrados, sino todos
   updateCounters();
 }
 
@@ -89,29 +86,29 @@ function likeDislike(id, type) {
   FILTROS
 ------------------------- */
 
-let currentFilter = null;
+let currentFilter = null; // Guarda el filtro activo actual. Si es null, no hay filtro aplicado
 
+// FILTRO POR NOMBRE
 function filterByName(nameToFilter) {
-
   document.querySelectorAll(".filter-btn")
-    .forEach(btn => btn.classList.remove("active"));
+    .forEach(btn => btn.classList.remove("active")); // Quitamos la clase active de todos los botones de filtro
 
-  if (currentFilter === nameToFilter) {
+  if (currentFilter === nameToFilter) { // Si el filtro actual es el mismo que hemos pulsado, lo desactivamos y mostramos todos los perros
     currentFilter = null;
     renderPerricoArray();
     return;
   }
 
-  currentFilter = nameToFilter;
+  currentFilter = nameToFilter; // Guardamos el filtro 
+  const filtered = perricosArray.filter(dog => dog.name === nameToFilter); // Creamos un array solo con los perros de ese nombre
 
-  const filtered = perricosArray.filter(dog => dog.name === nameToFilter);
 
-  renderPerricoArray(filtered);
-  document.querySelector(`#${nameToFilter}`).classList.add("active");
+  renderPerricoArray(filtered); // Renderizamos solo los filtrados
+  document.querySelector(`#${nameToFilter}`).classList.add("active"); // Marcamos el botón como activo
+
 }
-
+// FILTRO POR LIKE/DISLIKE
 function filterByLikeDislike(statusFilter) {
-
   document.querySelectorAll(".filter-btn")
     .forEach(btn => btn.classList.remove("active"));
 
@@ -130,8 +127,7 @@ function filterByLikeDislike(statusFilter) {
     .classList.add("active");
 }
 
-function getFilteredArray() {
-
+function getFilteredArray() { // Devuelve array filtrado según el tipo de filtro activo. La usamos en likeDislike para mantener el filtro al votar
   if (currentFilter === "like" || currentFilter === "dislike") {
     return perricosArray.filter(dog => dog.status === currentFilter);
   }
@@ -143,7 +139,6 @@ function getFilteredArray() {
 ------------------------- */
 
 function filtersActions() {
-
   const container = document.querySelector("#filter-container");
   const toggle = document.querySelector("#toggle-filters");
 
@@ -157,8 +152,7 @@ function filtersActions() {
   LIMPIAR FILTROS
 ------------------------- */
 
-function clearFilters() {
-
+function clearFilters() { // Resetea el filtro a null, quita las clases activas y muestra todos los perros. Se ejecuta automáticamente al añadir perros nuevos"
   currentFilter = null;
 
   document.querySelectorAll(".filter-btn")
@@ -174,7 +168,7 @@ function clearFilters() {
 function updateCounters() {
   // Contador para cada nombre
   namesArray.forEach(name => {
-    const count = perricosArray.filter(dog => dog.name === name).length; // Contador de perros con ese nombre
+    const count = perricosArray.filter(dog => dog.name === name).length; // Contamos cuántos perros tienen ese nombre con filter().lenght
     const button = document.querySelector(`#${name} .count`);
     if (button) {
       button.textContent = count; // Actualiza el número
@@ -182,7 +176,7 @@ function updateCounters() {
   });
   
   // Contador para liked
-  const likedCount = perricosArray.filter(dog => dog.status === "like").length;
+  const likedCount = perricosArray.filter(dog => dog.status === "like").length; 
   const likedBtn = document.querySelector("#Liked .count");
   if (likedBtn) {
     likedBtn.textContent = likedCount;
