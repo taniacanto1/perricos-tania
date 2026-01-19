@@ -1,30 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="./api.js"></script>
-    <title>Vota al Perrico</title>
-    <link rel="stylesheet" href="./index.css" />
-  </head>
-  <body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="./api.js"></script>
+  <title>Vota al Perrico</title>
+  <link rel="stylesheet" href="./index.css" />
+</head>
+
+<body>
+  <div class="header-container">
+  <div class="header-top">
     <h1>Vota al Perrico</h1>
-    <div class="add-btns">
-      <button id="add-1-perrico">Añadir 1 más</button>
-      <button id="add-5-perricos">Añadir 5 más</button>
-      <button id="toggle-filters">Filtros ▼</button>
+    <div class="search-container">
+      <img src="./imagenes/icon-blue-search.svg" alt="Buscar" class="search-icon">
+      <input type="search" id="searchInput" placeholder="Buscar por nombre...">
     </div>
-    <div id="filter-container" style="display: none;"> 
-      <!-- Filtros por nombre con contador -->
-      <button id="Sky" class="filter-btn">Sky <span class="count">0</span></button>
-      <button id="Arya" class="filter-btn">Arya <span class="count">0</span></button>
-      <button id="Akira" class="filter-btn">Akira <span class="count">0</span></button>
-      <button id="Toby" class="filter-btn">Toby <span class="count">0</span></button>
-      <!-- Filtros por like/dislike con contador -->
-      <button id="Liked" class="filter-btn">❤️ Liked <span class="count">0</span></button>
-      <button id="Disliked" class="filter-btn">💔 Disliked <span class="count">0</span></button>
-    </div>
-    <div id="dog-list"></div>
-  </body>
-  <script src="./index.js"></script>
+  </div>
+</div>
+  <div class="add-btns">
+    <button id="add-1-perrico">Añadir 1 más</button>
+    <button id="add-5-perricos">Añadir 5 más</button>
+    <button id="toggle-filters">Filtros ▼</button>
+  </div>
+  <div id="filter-container" style="display: none;">
+    <!-- Filtros por nombre con contador -->
+    <button id="Sky" class="filter-btn">Sky <span class="count">0</span></button>
+    <button id="Arya" class="filter-btn">Arya <span class="count">0</span></button>
+    <button id="Akira" class="filter-btn">Akira <span class="count">0</span></button>
+    <button id="Toby" class="filter-btn">Toby <span class="count">0</span></button>
+    <!-- Filtros por like/dislike con contador -->
+    <button id="Liked" class="filter-btn">❤️ Liked <span class="count">0</span></button>
+    <button id="Disliked" class="filter-btn">💔 Disliked <span class="count">0</span></button>
+  </div>
+  <div class="no-results" id="noResults" style="display: none;">
+  <img src="./imagenes/sad-dog.png" alt="Imagen perro llorando" class="search-error-dog">
+  <h3>No se encontraron resultados</h3>
+  <p>Intenta con otros términos de búsqueda</p>
+</div>
+  <div id="dog-list"></div>
+</body>
+<script src="./index.js"></script>
+
 </html>

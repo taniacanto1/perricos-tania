@@ -109,8 +109,7 @@ function filterByName(nameToFilter) {
 }
 // FILTRO POR LIKE/DISLIKE
 function filterByLikeDislike(statusFilter) {
-  document.querySelectorAll(".filter-btn")
-    .forEach(btn => btn.classList.remove("active"));
+  document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
 
   if (currentFilter === statusFilter) {
     currentFilter = null;
@@ -122,9 +121,7 @@ function filterByLikeDislike(statusFilter) {
   const filtered = perricosArray.filter(dog => dog.status === statusFilter);
   renderPerricoArray(filtered);
 
-  document
-    .querySelector(`#${statusFilter === "like" ? "Liked" : "Disliked"}`)
-    .classList.add("active");
+  document.querySelector(`#${statusFilter === "like" ? "Liked" : "Disliked"}`).classList.add("active");
 }
 
 function getFilteredArray() { // Devuelve array filtrado según el tipo de filtro activo. La usamos en likeDislike para mantener el filtro al votar
@@ -152,12 +149,11 @@ function filtersActions() {
   LIMPIAR FILTROS
 ------------------------- */
 
-function clearFilters() { // Resetea el filtro a null, quita las clases activas y muestra todos los perros. Se ejecuta automáticamente al añadir perros nuevos"
+function clearFilters() {
   currentFilter = null;
-
-  document.querySelectorAll(".filter-btn")
-    .forEach(btn => btn.classList.remove("active"));
-
+  document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
+  document.querySelector("#searchInput").value = ""; // Limpiar búsqueda
+  document.querySelector("#noResults").style.display = "none"; // Ocultar mensaje de error
   renderPerricoArray();
 }
 
@@ -165,8 +161,8 @@ function clearFilters() { // Resetea el filtro a null, quita las clases activas 
   CONTADOR DE FILTROS
 ------------------------- */
 
+// Contador para cada nombre
 function updateCounters() {
-  // Contador para cada nombre
   namesArray.forEach(name => {
     const count = perricosArray.filter(dog => dog.name === name).length; // Contamos cuántos perros tienen ese nombre con filter().lenght
     const button = document.querySelector(`#${name} .count`);
@@ -187,6 +183,45 @@ function updateCounters() {
   const dislikedBtn = document.querySelector("#Disliked .count");
   if (dislikedBtn) {
     dislikedBtn.textContent = dislikedCount;
+  }
+}
+
+/* -------------------------
+  BÚSQUEDA EN TIEMPO REAL
+------------------------- */
+
+function searchDogs() {
+  const searchInput = document.querySelector("#searchInput");
+  const searchTerm = searchInput.value.toLowerCase().trim();
+  const noResults = document.querySelector("#noResults");
+  
+  if (searchTerm === "") { // Si no hay búsqueda, mostrar según filtro activo o todos
+    renderPerricoArray(currentFilter ? getFilteredArray() : perricosArray);
+    noResults.style.display = "none";
+    return;
+  }
+  
+  // Filtrar perros por nombre que contenga el término de búsqueda
+  let filtered = perricosArray.filter(dog => 
+    dog.name.toLowerCase().includes(searchTerm)
+  );
+  
+  // Si hay un filtro activo, aplicarlo también
+  if (currentFilter) {
+    if (currentFilter === "like" || currentFilter === "dislike") {
+      filtered = filtered.filter(dog => dog.status === currentFilter);
+    } else {
+      filtered = filtered.filter(dog => dog.name === currentFilter);
+    }
+  }
+  
+  // Mostrar resultados o mensaje de error
+  if (filtered.length === 0) {
+    noResults.style.display = "block";
+    document.querySelector("#dog-list").innerHTML = "";
+  } else {
+    noResults.style.display = "none";
+    renderPerricoArray(filtered);
   }
 }
 
@@ -213,3 +248,6 @@ document.querySelector("#Disliked")
 
 document.querySelector("#toggle-filters")
   .addEventListener("click", filtersActions);
+
+  document.querySelector("#searchInput")
+  .addEventListener("input", searchDogs); // Para búsqueda en tiempo real
