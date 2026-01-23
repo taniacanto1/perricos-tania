@@ -36,11 +36,15 @@ const add1Perrico = async () => {
   const perricoImg = await getRandomDogImage(); // Llamamos a la API y esperamos la imagen
   const randomName = namesArray[Math.floor(Math.random() * namesArray.length)]; // Generamos un índice aleatorio entre 0 y 3 para elegir un nombre del array
 
+  // Extraer la raza de la URL de la imagen
+  const breed = perricoImg.split('/breeds/')[1]?.split('/')[0] || 'unknown';
+
   perricosArray.push({
     id: perricoId++,
     image: perricoImg,
     name: randomName,
-    status: null // Sin like ni dislike
+    status: null, // Sin like ni dislike (FALTABA LA COMA AQUÍ)
+    breed: breed // Guardamos la raza
   });
 
   clearFilters(); // Limpiamos los filtros 
@@ -51,12 +55,16 @@ const add5Perricos = async () => {
   for (let i = 0; i < 5; i++) {
     const img = await getRandomDogImage();
     const randomName = namesArray[Math.floor(Math.random() * namesArray.length)];
+
+    // Extraer la raza de la URL
+    const breed = img.split('/breeds/')[1]?.split('/')[0] || 'unknown';
     
     perricosArray.push({
       id: perricoId++,
       image: img,
       name: randomName,
-      status: null
+      status: null,
+      breed: breed
     });
   }
 
@@ -102,11 +110,10 @@ function filterByName(nameToFilter) {
   currentFilter = nameToFilter; // Guardamos el filtro 
   const filtered = perricosArray.filter(dog => dog.name === nameToFilter); // Creamos un array solo con los perros de ese nombre
 
-
   renderPerricoArray(filtered); // Renderizamos solo los filtrados
   document.querySelector(`#${nameToFilter}`).classList.add("active"); // Marcamos el botón como activo
-
 }
+
 // FILTRO POR LIKE/DISLIKE
 function filterByLikeDislike(statusFilter) {
   document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
@@ -124,9 +131,29 @@ function filterByLikeDislike(statusFilter) {
   document.querySelector(`#${statusFilter === "like" ? "Liked" : "Disliked"}`).classList.add("active");
 }
 
-function getFilteredArray() { // Devuelve array filtrado según el tipo de filtro activo. La usamos en likeDislike para mantener el filtro al votar
+// FILTRO POR RAZA
+function filterByBreed(breedToFilter) {
+  document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
+  
+  if (breedToFilter === "") {
+    currentFilter = null;
+    document.querySelector("#breed-list").value = ""; // Resetear el selector
+    renderPerricoArray();
+    return;
+  }
+
+  currentFilter = `breed-${breedToFilter}`;
+  const filtered = perricosArray.filter(dog => dog.breed === breedToFilter);
+  renderPerricoArray(filtered);
+}
+
+function getFilteredArray() {
   if (currentFilter === "like" || currentFilter === "dislike") {
     return perricosArray.filter(dog => dog.status === currentFilter);
+  }
+  if (currentFilter && currentFilter.startsWith("breed-")) {
+    const breed = currentFilter.replace("breed-", "");
+    return perricosArray.filter(dog => dog.breed === breed);
   }
   return perricosArray.filter(dog => dog.name === currentFilter);
 }
@@ -153,6 +180,7 @@ function clearFilters() {
   currentFilter = null;
   document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
   document.querySelector("#searchInput").value = ""; // Limpiar búsqueda
+  document.querySelector("#breed-list").value = ""; // Limpiar selector de razas
   document.querySelector("#noResults").style.display = "none"; // Ocultar mensaje de error
   renderPerricoArray();
 }
@@ -210,6 +238,9 @@ function searchDogs() {
   if (currentFilter) {
     if (currentFilter === "like" || currentFilter === "dislike") {
       filtered = filtered.filter(dog => dog.status === currentFilter);
+    } else if (currentFilter.startsWith("breed-")) {
+      const breed = currentFilter.replace("breed-", "");
+      filtered = filtered.filter(dog => dog.breed === breed);
     } else {
       filtered = filtered.filter(dog => dog.name === currentFilter);
     }
@@ -222,6 +253,30 @@ function searchDogs() {
   } else {
     noResults.style.display = "none";
     renderPerricoArray(filtered);
+  }
+}
+
+/* -------------------------
+  RAZAS
+------------------------- */
+
+async function renderBreeds(){
+  const breedsObject = await getAllBreeds();
+  const selectButton = document.querySelector("#breed-list");
+  const breedsNames = Object.keys(breedsObject);
+
+  // Añadimos la opción inicial
+  const defaultOption = document.createElement("option");
+  defaultOption.value = "";
+  defaultOption.textContent = "Elige la raza";
+  selectButton.appendChild(defaultOption);
+
+  // Recorremos las razas
+  for(let index = 0; index < breedsNames.length; index++){
+    const option = document.createElement("option");
+    option.value = breedsNames[index];
+    option.textContent = breedsNames[index].toUpperCase();
+    selectButton.appendChild(option);
   }
 }
 
@@ -249,5 +304,12 @@ document.querySelector("#Disliked")
 document.querySelector("#toggle-filters")
   .addEventListener("click", filtersActions);
 
-  document.querySelector("#searchInput")
-  .addEventListener("input", searchDogs); // Para búsqueda en tiempo real
+document.querySelector("#searchInput")
+  .addEventListener("input", searchDogs);
+
+document.querySelector("#breed-list").addEventListener("change", (e) => {
+  filterByBreed(e.target.value);
+});
+
+// Cargar las razas al iniciar
+renderBreeds();
