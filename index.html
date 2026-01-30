@@ -1,48 +1,200 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="./api.js"></script>
-  <title>Vota al Perrico</title>
-  <link rel="stylesheet" href="./index.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paw conex - Encuentra tu Compañero Ideal</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-  <div class="header-container">
-  <div class="header-top">
-    <h1>Vota al Perrico</h1>
-    <div class="search-container">
-      <img src="./imagenes/icon-blue-search.svg" alt="Buscar" class="search-icon">
-      <input type="search" id="searchInput" placeholder="Buscar por nombre...">
+    <div class="bg-organic">
+        <div class="organic-shape shape-1"></div>
+        <div class="organic-shape shape-2"></div>
+        <div class="organic-shape shape-3"></div>
     </div>
-  </div>
-</div>
-  <div class="add-btns">
-    <button id="add-1-perrico">Añadir 1 más</button>
-    <button id="add-5-perricos">Añadir 5 más</button>
-    <button id="toggle-filters">Filtros ▼</button>
-  </div>
-  <div id="filter-container" style="display: none;">
-    <!--Filtro razas-->
-    <select id="breed-list"></select> 
-    <!-- Filtros por nombre con contador -->
-    <button id="Sky" class="filter-btn">Sky <span class="count">0</span></button>
-    <button id="Arya" class="filter-btn">Arya <span class="count">0</span></button>
-    <button id="Akira" class="filter-btn">Akira <span class="count">0</span></button>
-    <button id="Toby" class="filter-btn">Toby <span class="count">0</span></button>
-    <!-- Filtros por like/dislike con contador -->
-    <button id="Liked" class="filter-btn">❤️ Liked <span class="count">0</span></button>
-    <button id="Disliked" class="filter-btn">💔 Disliked <span class="count">0</span></button>
-  </div>
-  <div class="no-results" id="noResults" style="display: none;">
-  <img src="./imagenes/sad-dog.png" alt="Imagen perro llorando" class="search-error-dog">
-  <h3>No se encontraron resultados</h3>
-  <p>Intenta con otros términos de búsqueda</p>
-</div>
-  <div id="dog-list"></div>
-</body>
-<script src="./index.js"></script>
+    
+    <!--HEADER-->
+    <div class="container">
+        <nav class="navbar">
+            <div class="logo-group">
+                <div class="logo-mark">
+                    <img src="./images/paws.png" alt="Logo" class="logo-icon">
+                </div>
+                <span class="logo-text">Paw Conex</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="active">Inicio</a>
+                <a href="#como-funciona">Cómo funciona</a>
+                <a href="perros.html">Perros disponibles</a>
+                <a href="#contacto">Contacto</a>
+                <button class="nav-button-login">Login</button>
+                <button class="nav-button-sign-up">Sign Up</button>
+            </div>
+        </nav>
+        
+        <!--SECCIÓN PRINCIPAL-->
+        <section class="hero-section">
+            <div class="hero-content">
+                <div class="badge">
+                    <span>Matching Inteligente Basado en IA</span>
+                </div>
+                <h1>
+                    Encuentra tu <span class="text-gradient">compañero perfecto</span>
+                </h1>
+                <p class="hero-description">
+                    Nuestro algoritmo analiza tu estilo de vida, preferencias y personalidad para conectarte con tu
+                    perro ideal.
+                </p>
+                <div class="cta-buttons">
+                    <button class="btn-primary">
+                        <span>Realizar test</span>
+                        <span>▶</span>
+                    </button>
+                    <button class="btn-secondary">
+                        <span>Cómo Funciona</span>
+                        <span>▶</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!--CARDS FLOTANTES-->
+            <div class="hero-visual">
+                <div class="floating-card card-main">
+                    <div class="card-image-wrapper">🐕</div>
+                    <div class="card-content">
+                        <h3>Max</h3>
+                        <div class="card-breed">Labrador Retriever</div>
+                        <div class="match-indicator">
+                            <div class="match-icon"></div>
+                            <span>95% Compatible</span>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="floating-card card-secondary">
+                    <div class="card-image-wrapper">🦮</div>
+                    <div class="card-content">
+                        <h3>Luna</h3>
+                        <div class="card-breed">Golden Retriever</div>
+                        <div class="match-indicator">
+                            <div class="match-icon"></div>
+                            <span>89% Compatible</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="floating-card card-tertiary">
+                    <div class="card-image-wrapper">🐩</div>
+                    <div class="card-content">
+                        <h3>Rocky</h3>
+                        <div class="card-breed">Poodle Standard</div>
+                        <div class="match-indicator">
+                            <div class="match-icon"></div>
+                            <span>92% Compatible</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!--STATS-->
+        <section class="stats-wrapper">
+            <div class="stat-box">
+                <div class="stat-number" data-target="15000">0</div>
+                <div class="stat-label">Familias Felices</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" data-target="50">0</div>
+                <div class="stat-label">Razas Disponibles</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" data-target="94">0</div>
+                <div class="stat-label">% Tasa de Éxito</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" data-target="3">0</div>
+                <div class="stat-label">Minutos de Test</div>
+            </div>
+        </section>
+        
+        <!--EXPLICACIÓN PROCESO-->
+        <section class="process-section" id="como-funciona">
+            <div class="process-content">
+                <div class="process-header">
+                    <span class="section-eyebrow">¿Cómo funciona?</span>
+                    <h2>Tres pasos hacia tu mejor amigo</h2>
+                </div>
+
+                <div class="steps-container">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <h3 class="step-title">Completa el Test</h3>
+                        <p class="step-description">Responde preguntas sobre tu hogar, rutina, experiencia y lo que
+                            buscas en un compañero canino.</p>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <h3 class="step-title">Análisis Instantáneo</h3>
+                        <p class="step-description">Nuestro algoritmo procesa tu perfil y calcula compatibilidad con
+                            cada raza en nuestra base de datos.</p>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <h3 class="step-title">Explora Matches</h3>
+                        <p class="step-description">Descubre perros ordenados por compatibilidad con explicaciones
+                            personalizadas de cada recomendación.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!--BÚSQUEDA MANUAL-->
+        <section class="cta-section">
+            <h2>Empieza tu búsqueda hoy</h2>
+            <p>Más de 15.000 familias ya encontraron a su compañero ideal. ¿Estás listo para encontrar el tuyo?</p>
+            <button class="cta-final" onclick="window.location.href='perros.html'">
+                <span>Ver Perros Disponibles</span>
+                <span>→</span>
+            </button>
+        </section>
+    </div>
+
+    <!-- MODAL DE AUTENTICACIÓN -->
+    <div id="authModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            
+            <div id="loginFormContainer">
+                <h2>Bienvenido de nuevo</h2>
+                <form id="loginForm">
+                    <input type="email" id="loginEmail" placeholder="Tu correo electrónico" required>
+                    <input type="password" id="loginPassword" placeholder="Tu contraseña" required>
+                    <button type="submit" class="btn-primary full-width">Iniciar Sesión</button>
+                </form>
+                <p class="switch-text">¿No tienes cuenta? <span id="showSignUp">Regístrate aquí</span></p>
+            </div>
+
+            <div id="signupFormContainer" class="hidden">
+                <h2>Crea tu cuenta</h2>
+                <form id="signupForm">
+                    <input type="email" id="signupEmail" placeholder="Tu correo electrónico" required>
+                    <input type="password" id="signupPassword" placeholder="Crea una contraseña" required>
+                    <button type="submit" class="btn-primary full-width">Registrarse</button>
+                </form>
+                <p class="switch-text">¿Ya tienes cuenta? <span id="showLogin">Inicia sesión</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="main.js"></script>
+    <script type="module" src="auth.js"></script>
+</body>
 </html>

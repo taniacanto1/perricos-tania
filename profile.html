@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil - Paw Conex</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="bg-organic">
+        <div class="organic-shape shape-1"></div>
+        <div class="organic-shape shape-2"></div>
+        <div class="organic-shape shape-3"></div>
+    </div>
+    
+    <div class="container">
+        <nav class="navbar">
+            <div class="logo-group">
+                <div class="logo-mark">
+                    <img src="./images/paws.png" alt="Logo" class="logo-icon">
+                </div>
+                <span class="logo-text">Paw Conex</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Volver al Inicio</a>
+                <a href="perros.html">Ver Perros</a>
+                <button id="btnLogout" class="nav-button-logout">Cerrar Sesión</button>
+            </div>
+        </nav>
+
+        <section class="hero-section" style="display: block; text-align: center; margin-top: 50px;">
+            <div class="badge">
+                <span>Espacio Personal</span>
+            </div>
+            <h1>Hola, <span class="text-gradient" id="userEmailDisplay">Cargando...</span></h1>
+            <p class="hero-description" style="margin: 0 auto 40px;">
+                Bienvenido a tu panel de control. Aquí podrás ver tus matches y gestionar tu cuenta.
+            </p>
+
+            <div class="stats-wrapper" style="justify-content: center; margin-top: 50px;">
+                <div class="stat-box">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Matches Guardados</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">Premium</div>
+                    <div class="stat-label">Tipo de Cuenta</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script type="module" src="auth.js"></script>
+</body>
+</html>

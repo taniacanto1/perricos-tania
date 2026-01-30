@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perros Disponibles - Paw Conex</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="perros.css">
+</head>
+<body class="perros-page">
+    <div class="bg-organic">
+        <div class="organic-shape shape-1"></div>
+        <div class="organic-shape shape-2"></div>
+        <div class="organic-shape shape-3"></div>
+    </div>
+
+    <div class="container">
+        <nav class="navbar">
+            <div class="logo-group">
+                <div class="logo-mark">
+                    <img src="./images/paws.png" alt="Logo" class="logo-icon">
+                </div>
+                <span class="logo-text">Paw Conex</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="index.html#como-funciona">Cómo funciona</a>
+                <a href="perros.html" class="active">Perros disponibles</a>
+                <a href="index.html#contacto">Contacto</a>
+                <button class="nav-button-login">Login</button>
+                <button class="nav-button-sign-up">Sign Up</button>
+            </div>
+        </nav>
+
+        <!-- Header de la página de perros -->
+        <div class="perros-header">
+            <h1>Perros Disponibles</h1>
+            <p class="perros-subtitle">Explora nuestra lista de adorables compañeros esperando un hogar</p>
+        </div>
+
+        <!-- Barra de búsqueda -->
+        <div class="search-bar-container">
+            <div class="search-input-wrapper">
+                <img src="./images/icon-blue-search-2.svg" alt="Buscar" class="search-icon">
+                <input type="search" id="searchInput" placeholder="Buscar por nombre..." />
+            </div>
+        </div>
+
+        <!-- Botones de acción -->
+        <div class="action-buttons">
+            <button class="action-btn primary" id="add-1-perrico">
+                <span>Añadir 1 Perro</span>
+            </button>
+            <button class="action-btn primary" id="add-5-perricos">
+                <span>Añadir 5 Perros</span>
+            </button>
+            <button class="action-btn secondary" id="toggle-filters">
+                <span>Filtros ▼</span>
+            </button>
+        </div>
+
+        <!-- Contenedor de filtros -->
+        <div id="filter-container" class="filter-container" style="display: none;">
+            <div class="filter-section">
+                <h3 class="filter-title">Filtrar por Raza</h3>
+                <select id="breed-list" class="breed-select">
+                    <option value="">Todas las razas</option>
+                </select>
+            </div>
+
+            <div class="filter-section">
+                <h3 class="filter-title">Filtrar por Nombre</h3>
+                <div class="filter-buttons-grid">
+                    <button id="Sky" class="filter-btn">
+                        <span class="filter-label">Sky</span>
+                        <span class="count">0</span>
+                    </button>
+                    <button id="Arya" class="filter-btn">
+                        <span class="filter-label">Arya</span>
+                        <span class="count">0</span>
+                    </button>
+                    <button id="Akira" class="filter-btn">
+                        <span class="filter-label">Akira</span>
+                        <span class="count">0</span>
+                    </button>
+                    <button id="Toby" class="filter-btn">
+                        <span class="filter-label">Toby</span>
+                        <span class="count">0</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <h3 class="filter-title">Filtrar por Estado</h3>
+                <div class="filter-buttons-grid">
+                    <button id="Liked" class="filter-btn like-btn">
+                        <span class="filter-label">❤️ Favoritos</span>
+                        <span class="count">0</span>
+                    </button>
+                    <button id="Disliked" class="filter-btn dislike-btn">
+                        <span class="filter-label">💔 No Favoritos</span>
+                        <span class="count">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mensaje de sin resultados -->
+        <div class="no-results" id="noResults" style="display: none;">
+            <div class="no-results-icon">🐕</div>
+            <h3>No se encontraron perros</h3>
+            <p>Intenta ajustar tus filtros o añade más perros a la lista</p>
+        </div>
+
+        <!-- Lista de perros -->
+        <div id="dog-list" class="dog-grid"></div>
+    </div>
+
+    <!-- MODAL DE AUTENTICACIÓN -->
+    <div id="authModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            
+            <div id="loginFormContainer">
+                <h2>Bienvenido de nuevo</h2>
+                <form id="loginForm">
+                    <input type="email" id="loginEmail" placeholder="Tu correo electrónico" required>
+                    <input type="password" id="loginPassword" placeholder="Tu contraseña" required>
+                    <button type="submit" class="btn-primary full-width">Iniciar Sesión</button>
+                </form>
+                <p class="switch-text">¿No tienes cuenta? <span id="showSignUp">Regístrate aquí</span></p>
+            </div>
+
+            <div id="signupFormContainer" class="hidden">
+                <h2>Crea tu cuenta</h2>
+                <form id="signupForm">
+                    <input type="email" id="signupEmail" placeholder="Tu correo electrónico" required>
+                    <input type="password" id="signupPassword" placeholder="Crea una contraseña" required>
+                    <button type="submit" class="btn-primary full-width">Registrarse</button>
+                </form>
+                <p class="switch-text">¿Ya tienes cuenta? <span id="showLogin">Inicia sesión</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="api.js"></script>
+    <script src="perros.js"></script>
+    <script type="module" src="auth.js"></script>
+</body>
+</html>
