@@ -39,14 +39,6 @@
             <p class="perros-subtitle">Explora nuestra lista de adorables compañeros esperando un hogar</p>
         </div>
 
-        <!-- Barra de búsqueda -->
-        <div class="search-bar-container">
-            <div class="search-input-wrapper">
-                <img src="./images/icon-blue-search-2.svg" alt="Buscar" class="search-icon">
-                <input type="search" id="searchInput" placeholder="Buscar por nombre..." />
-            </div>
-        </div>
-
         <!-- Botones de acción -->
         <div class="action-buttons">
             <button class="action-btn primary" id="add-1-perrico">
@@ -63,6 +55,13 @@
         <!-- Contenedor de filtros -->
         <div id="filter-container" class="filter-container" style="display: none;">
             <div class="filter-section">
+            <!-- Barra de búsqueda -->
+        <div class="search-bar-container">
+            <div class="search-input-wrapper">
+                <img src="./images/icon-blue-search-2.svg" alt="Buscar" class="search-icon">
+                <input type="search" id="searchInput" placeholder="Buscar por nombre..." />
+            </div>
+        </div>
                 <h3 class="filter-title">Filtrar por Raza</h3>
                 <select id="breed-list" class="breed-select">
                     <option value="">Todas las razas</option>
@@ -108,14 +107,16 @@
 
         <!-- Mensaje de sin resultados -->
         <div class="no-results" id="noResults" style="display: none;">
-            <div class="no-results-icon">🐕</div>
             <h3>No se encontraron perros</h3>
             <p>Intenta ajustar tus filtros o añade más perros a la lista</p>
+            <div class="dog-search-error-image">
+                <img src="./images/sad-dog-2.png" alt="Perro meme triste">
         </div>
 
-        <!-- Lista de perros -->
-        <div id="dog-list" class="dog-grid"></div>
     </div>
+
+    <!-- Lista de perros -->
+        <div id="dog-list" class="dog-grid"></div>
 
     <!-- MODAL DE AUTENTICACIÓN -->
     <div id="authModal" class="modal-overlay hidden">

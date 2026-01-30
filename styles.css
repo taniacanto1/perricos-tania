@@ -319,7 +319,7 @@ h1 {
     flex-wrap: wrap;
 }
 
-.btn-primary {
+.btn-secondary {
     display: inline-flex;
     align-items: center;
     gap: 12px;
@@ -337,7 +337,7 @@ h1 {
     overflow: hidden;
 }
 
-.btn-primary::before {
+.btn-secondary::before {
     content: '';
     position: absolute;
     top: 0;
@@ -348,16 +348,16 @@ h1 {
     transition: left 0.6s;
 }
 
-.btn-primary:hover::before {
+.btn-secondary:hover::before {
     left: 100%;
 }
 
-.btn-primary:hover {
+.btn-secondary:hover {
     transform: translateY(-3px);
     box-shadow: 0 16px 40px rgba(95, 111, 82, 0.4);
 }
 
-.btn-secondary {
+.btn-primary {
     display: inline-flex;
     align-items: center;
     gap: 12px;
@@ -373,7 +373,7 @@ h1 {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
 }
 
-.btn-secondary:hover {
+.btn-primary:hover {
     border-color: var(--sage-green);
     transform: translateY(-2px);
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);

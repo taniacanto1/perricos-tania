@@ -30,7 +30,7 @@
 /* Barra de búsqueda */
 .search-bar-container {
     display: flex;
-    justify-content: center;
+    justify-content: left;
     margin-bottom: 40px;
     animation: fadeInUp 0.8s ease-out 0.2s backwards;
 }
@@ -266,10 +266,9 @@
     animation: fadeInUp 0.6s ease-out;
 }
 
-.no-results-icon {
-    font-size: 80px;
-    margin-bottom: 20px;
-    opacity: 0.5;
+.dog-search-error-image img{
+    width: 700px;
+    height: auto;
 }
 
 .no-results h3 {
@@ -443,4 +442,18 @@
     .search-input-wrapper {
         max-width: 100%;
     }
+}
+
+.filter-container .search-bar-container {
+    margin-bottom: 20px; 
+    width: 100%;
+}
+
+.filter-container .search-input-wrapper {
+    max-width: 100%; 
+}
+
+.filter-container input[type="search"] {
+    box-shadow: none;
+    border: 2px solid var(--soft-beige);
 }
