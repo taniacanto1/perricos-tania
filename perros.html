@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perros Disponibles - Paw Conex</title>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="perros.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/perros.css">
 </head>
-<body class="perros-page">
+
+<body class="dogs-page">
     <div class="bg-organic">
         <div class="organic-shape shape-1"></div>
         <div class="organic-shape shape-2"></div>
@@ -34,89 +35,75 @@
         </nav>
 
         <!-- Header de la página de perros -->
-        <div class="perros-header">
+        <div class="dogs-header">
             <h1>Perros Disponibles</h1>
-            <p class="perros-subtitle">Explora nuestra lista de adorables compañeros esperando un hogar</p>
+            <p class="dogs-header-subtitle">Explora una lista de adorables compañeros esperando un hogar</p>
         </div>
-
+        
         <!-- Botones de acción -->
-        <div class="action-buttons">
-            <button class="action-btn primary" id="add-1-perrico">
-                <span>Añadir 1 Perro</span>
-            </button>
-            <button class="action-btn primary" id="add-5-perricos">
-                <span>Añadir 5 Perros</span>
-            </button>
-            <button class="action-btn secondary" id="toggle-filters">
-                <span>Filtros ▼</span>
-            </button>
+        <div class="controls-wrapper">
+            <div class="breed-selection-group">
+                <h3 class="filter-title">Selecciona una Raza</h3>
+                <select id="breed-list" class="breed-select"></select>
+            </div>
+        
+            <div class="action-buttons">
+                <button class="action-btn-add action-btn-breed" id="add-1-dog">
+                    <span>Generar 1 Perro</span>
+                </button>
+                <button class="action-btn-add action-btn-breed" id="add-5-dogs">
+                    <span>Generar 5 Perros</span>
+                </button>
+                <button class="action-btn-filter" id="toggle-filters">
+                    <span>Filtros ▼</span>
+                </button>
+            </div>
         </div>
 
         <!-- Contenedor de filtros -->
         <div id="filter-container" class="filter-container" style="display: none;">
-            <div class="filter-section">
             <!-- Barra de búsqueda -->
-        <div class="search-bar-container">
-            <div class="search-input-wrapper">
-                <img src="./images/icon-blue-search-2.svg" alt="Buscar" class="search-icon">
-                <input type="search" id="searchInput" placeholder="Buscar por nombre..." />
+            <div class="filter-section">
+                <div class="search-bar-container">
+                    <div class="search-input-wrapper">
+                        <img src="./images/icon-blue-search-2.svg" alt="Buscar" class="search-icon">
+                        <input type="search" id="searchInput" placeholder="Buscar por nombre..." />
+                    </div>
+                </div>
             </div>
-        </div>
+
+            <!-- Filtro por raza -->
+            <div class="filter-section">
+                <!-- Filtro por raza -->
                 <h3 class="filter-title">Filtrar por Raza</h3>
-                <select id="breed-list" class="breed-select">
-                    <option value="">Todas las razas</option>
-                </select>
-            </div>
-
-            <div class="filter-section">
-                <h3 class="filter-title">Filtrar por Nombre</h3>
-                <div class="filter-buttons-grid">
-                    <button id="Sky" class="filter-btn">
-                        <span class="filter-label">Sky</span>
-                        <span class="count">0</span>
-                    </button>
-                    <button id="Arya" class="filter-btn">
-                        <span class="filter-label">Arya</span>
-                        <span class="count">0</span>
-                    </button>
-                    <button id="Akira" class="filter-btn">
-                        <span class="filter-label">Akira</span>
-                        <span class="count">0</span>
-                    </button>
-                    <button id="Toby" class="filter-btn">
-                        <span class="filter-label">Toby</span>
-                        <span class="count">0</span>
-                    </button>
-                </div>
-            </div>
-
-            <div class="filter-section">
+                <select id="filter-breed-list" class="breed-select"></select>
+                <!-- Filtro por estado -->
                 <h3 class="filter-title">Filtrar por Estado</h3>
-                <div class="filter-buttons-grid">
-                    <button id="Liked" class="filter-btn like-btn">
-                        <span class="filter-label">❤️ Favoritos</span>
-                        <span class="count">0</span>
-                    </button>
-                    <button id="Disliked" class="filter-btn dislike-btn">
-                        <span class="filter-label">💔 No Favoritos</span>
-                        <span class="count">0</span>
-                    </button>
-                </div>
+                    <div class="filter-buttons-grid">
+                        <button id="Liked" class="filter-btn like-btn">
+                            <span class="filter-label">❤️ Favoritos</span>
+                            <span class="count">0</span>
+                        <!--  <button id="Disliked" class="filter-btn dislike-btn">
+                            <span class="filter-label">💔 No Favoritos</span>
+                            <span class="count">0</span>
+                        </button> -->
+                        </button>
+                    </div>
             </div>
         </div>
 
-        <!-- Mensaje de sin resultados -->
+        <!-- Mensaje de búsqueda sin resultados -->
         <div class="no-results" id="noResults" style="display: none;">
             <h3>No se encontraron perros</h3>
             <p>Intenta ajustar tus filtros o añade más perros a la lista</p>
             <div class="dog-search-error-image">
                 <img src="./images/sad-dog-2.png" alt="Perro meme triste">
+            </div>
         </div>
 
-    </div>
-
-    <!-- Lista de perros -->
+        <!-- Lista de perros -->
         <div id="dog-list" class="dog-grid"></div>
+    </div>
 
     <!-- MODAL DE AUTENTICACIÓN -->
     <div id="authModal" class="modal-overlay hidden">
@@ -146,8 +133,8 @@
     </div>
 
     <!-- SCRIPTS -->
-    <script src="api.js"></script>
-    <script src="perros.js"></script>
-    <script type="module" src="auth.js"></script>
+    <script src="./js/api.js"></script>
+    <script src="./js/perros.js"></script>
+    <script type="module" src="./js/auth.js"></script>
 </body>
 </html>

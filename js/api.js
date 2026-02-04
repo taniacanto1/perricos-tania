@@ -1,6 +1,5 @@
-// API Functions for Dog CEO API
-// Este archivo debe contener tus funciones para obtener imágenes de perros
 
+// Obtener imagen aleatoria de cualquier raza
 async function getRandomDogImage() {
   try {
     const response = await fetch('https://dog.ceo/api/breeds/image/random');
@@ -12,6 +11,19 @@ async function getRandomDogImage() {
   }
 }
 
+// Obtener imagen de una raza específica
+async function getDogImageByBreed(breed) {
+  try {
+    const response = await fetch(`https://dog.ceo/api/breed/${breed}/images/random`);
+    const data = await response.json();
+    return data.message;
+  } catch (error) {
+    console.error(`Error fetching ${breed} image:`, error);
+    return 'https://via.placeholder.com/400x300?text=Error+loading+image';
+  }
+}
+
+// Obtener todas las razas disponibles
 async function getAllBreeds() {
   try {
     const response = await fetch('https://dog.ceo/api/breeds/list/all');

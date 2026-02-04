@@ -5,34 +5,27 @@
 }
 
 /* Header de perros */
-.perros-header {
+.dogs-header {
     text-align: center;
-    margin-top: 5%;
+    margin-top: 2%;
     margin-bottom: 50px;
-    animation: fadeInDown 0.8s ease-out;
+    /*animation: fadeInDown 0.8s ease-out;*/
 }
 
-.perros-header h1 {
+.dogs-header h1 {
     font-family: 'Sora', sans-serif;
-    font-size: 56px;
+    font-size: 40px;
     font-weight: 800;
     color: var(--charcoal);
     margin-bottom: 16px;
 }
 
-.perros-subtitle {
-    font-size: 20px;
-    color: rgba(45, 45, 42, 0.7);
-    max-width: 700px;
-    margin: 0 auto;
-}
-
 /* Barra de búsqueda */
+
 .search-bar-container {
     display: flex;
     justify-content: left;
     margin-bottom: 40px;
-    animation: fadeInUp 0.8s ease-out 0.2s backwards;
 }
 
 .search-input-wrapper {
@@ -77,7 +70,7 @@
     padding: 14px 32px;
     color: var(--charcoal);
     border: 2px solid var(--deep-moss);
-    border-radius: 50px;
+    border-radius: 28px;
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
@@ -92,22 +85,31 @@
 }
 
 /* Botones de acción */
-.action-buttons {
+
+.main-container {
     display: flex;
-    justify-content: center;
-    gap: 16px;
-    flex-wrap: wrap;
-    margin-bottom: 40px;
-    animation: fadeInUp 0.8s ease-out 0.3s backwards;
 }
 
-.action-btn {
+.filter-subtitle {
+    font-size: 0.8rem;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+.action-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    /* animation: fadeInUp 0.8s ease-out 0.3s backwards; */
+}
+
+.action-btn-add {
     display: inline-flex;
     align-items: center;
     gap: 10px;
     padding: 16px 32px;
     border: none;
-    border-radius: 50px;
+    border-radius: 28px;
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
@@ -115,31 +117,56 @@
     font-family: 'Inter', sans-serif;
 }
 
-.action-btn.primary {
+.action-btn-add:hover{
+    box-shadow: 0 8px 24px rgba(95, 111, 82, 0.25);
+}
+
+.action-btn-breed {
     background: linear-gradient(135deg, var(--deep-moss), var(--sage-green));
     color: white;
     box-shadow: 0 8px 24px rgba(95, 111, 82, 0.25);
 }
 
-.action-btn.primary:hover {
+.action-btn-breed:hover {
     transform: translateY(-3px);
     box-shadow: 0 12px 32px rgba(95, 111, 82, 0.35);
 }
 
-.action-btn.secondary {
+.action-btn-filter {
+    padding: 14px 20px;
+    border-radius: 28px;
     background: white;
     color: var(--charcoal);
-    border: 2px solid var(--soft-beige);
+    border: 2px solid var(--grey);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 15px;
 }
 
-.action-btn.secondary:hover {
+.action-btn-filter:hover {
     border-color: var(--sage-green);
-    transform: translateY(-2px);
+   /* transform: translateY(-2px); */
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
 }
 
 /* Contenedor de filtros */
+
+.controls-wrapper {
+    display: flex;
+    align-items: flex-end; /* Alinea los botones con la base del select */
+    gap: 20px;
+    flex-wrap: wrap; /* Para que sea responsivo en móviles */
+    margin-bottom: 30px;
+}
+
+/* Ajustamos el grupo del selector para que no ocupe todo el ancho */
+.breed-selection-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
 .filter-container {
     background: white;
     border-radius: 28px;
@@ -174,15 +201,14 @@
     font-size: 18px;
     font-weight: 700;
     color: var(--charcoal);
-    margin-bottom: 16px;
+    margin-bottom: 10px;
 }
 
 /* Selector de razas */
 .breed-select {
-    width: 100%;
-    padding: 14px 20px;
-    border: 2px solid var(--soft-beige);
-    border-radius: 50px;
+    width: auto;
+    border: 2px solid var(--grey);
+    border-radius: 28px;
     font-size: 15px;
     background: white;
     color: var(--charcoal);
@@ -190,6 +216,9 @@
     transition: all 0.3s ease;
     font-family: 'Inter', sans-serif;
     font-weight: 500;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    min-width: 200px;
+    padding: 14px 20px;
 }
 
 .breed-select:hover {
@@ -250,7 +279,7 @@
     height: 28px;
     padding: 0 8px;
     background: rgba(45, 45, 42, 0.1);
-    border-radius: 50px;
+    border-radius: 28px;
     font-size: 13px;
     font-weight: 700;
 }
@@ -289,7 +318,6 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 32px;
-    margin-bottom: 60px;
 }
 
 /* Tarjeta de perro */
@@ -298,7 +326,7 @@
     border-radius: 28px;
     overflow: hidden;
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(232, 220, 199, 0.6);
+    border: 2px solid var(--grey);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     animation: fadeInUp 0.6s ease-out backwards;
 }
@@ -321,20 +349,28 @@
     object-position: center;
 }
 
-.dog-card-content {
-    padding: 24px;
-}
-
 .dog-card-header {
-    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between; /* Empuja el botón al extremo derecho */
+    align-items: flex-start;      /* Alinea el botón con la parte superior del texto */
+    margin-bottom: 15px;
 }
 
-.dog-card h3 {
+.header-text {
+    display: flex;
+    flex-direction: column; /* Mantiene el nombre arriba y la raza abajo */
+}
+
+.dog-card-content {
+    padding: 15px;
+}
+
+.dog-card-title {
     font-family: 'Sora', sans-serif;
     font-size: 24px;
-    font-weight: 700;
     color: var(--charcoal);
-    margin-bottom: 6px;
+    margin-bottom: 2px;
+    padding-right: 10px;
 }
 
 .dog-breed {
@@ -363,14 +399,12 @@
 /* Botones de acción de la tarjeta */
 .dog-card-actions {
     display: flex;
-    gap: 12px;
-    justify-content: flex-end;
 }
 
 .heart-btn {
     width: 48px;
     height: 48px;
-    border: 2px solid var(--soft-beige);
+    border: 2px solid var(--grey);
     border-radius: 50%;
     background: white;
     font-size: 24px;

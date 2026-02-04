@@ -1,9 +1,3 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 html {
     scroll-behavior: smooth;
 }
@@ -14,6 +8,7 @@ html {
     --sage-green: #A8B5A0;
     --deep-moss: #5F6F52;
     --charcoal: #2D2D2A;
+    --grey: #d3d2d2;
     --soft-beige: #E8DCC7;
     --accent-terracotta: #C97C5D;
     --light-mint: #D4E7D7;
@@ -24,7 +19,7 @@ body {
     background: var(--ivory);
     color: var(--charcoal);
     overflow-x: hidden;
-    line-height: 1.6;
+    line-height: 1;
 }
 
 /* Organic Background */
