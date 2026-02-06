@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perros Disponibles - Paw Conex</title>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="./css/perros.css">
 </head>
@@ -34,82 +37,103 @@
             </div>
         </nav>
 
-        <!-- Header de la página de perros -->
         <div class="dogs-header">
             <h1>Perros Disponibles</h1>
             <p class="dogs-header-subtitle">Explora una lista de adorables compañeros esperando un hogar</p>
         </div>
-        
-        <!-- Botones de acción -->
-        <div class="controls-wrapper">
-            <div class="breed-selection-group">
-                <h3 class="filter-title">Selecciona una Raza</h3>
-                <select id="breed-list" class="breed-select"></select>
-            </div>
-        
-            <div class="action-buttons">
-                <button class="action-btn-add action-btn-breed" id="add-1-dog">
-                    <span>Generar 1 Perro</span>
-                </button>
-                <button class="action-btn-add action-btn-breed" id="add-5-dogs">
-                    <span>Generar 5 Perros</span>
-                </button>
-                <button class="action-btn-filter" id="toggle-filters">
-                    <span>Filtros ▼</span>
-                </button>
-            </div>
-        </div>
 
-        <!-- Contenedor de filtros -->
-        <div id="filter-container" class="filter-container" style="display: none;">
-            <!-- Barra de búsqueda -->
-            <div class="filter-section">
-                <div class="search-bar-container">
-                    <div class="search-input-wrapper">
+        <div class="layout-container">
+
+            <aside class="sidebar">
+
+                <div class="sidebar-section">
+                    <h3 class="filter-title">Selecciona una Raza</h3>
+                    <select id="breed-list" class="breed-select full-width-select"></select>
+
+                    <div class="sidebar-actions">
+                        <button class="action-btn-add action-btn-breed full-btn" id="add-1-dog">
+                            <span>Generar 1 Perro</span>
+                        </button>
+                        <button class="action-btn-add action-btn-breed full-btn" id="add-5-dogs">
+                            <span>Generar 5 Perros</span>
+                        </button>
+                    </div>
+                </div>
+
+                <hr class="sidebar-divider">
+
+                <div class="sidebar-section">
+                    <h3 class="filter-title">Filtros</h3>
+
+                    <div class="search-input-wrapper sidebar-search">
                         <img src="./images/icon-blue-search-2.svg" alt="Buscar" class="search-icon">
                         <input type="search" id="searchInput" placeholder="Buscar por nombre..." />
                     </div>
                 </div>
-            </div>
 
-            <!-- Filtro por raza -->
-            <div class="filter-section">
-                <!-- Filtro por raza -->
-                <h3 class="filter-title">Filtrar por Raza</h3>
-                <select id="filter-breed-list" class="breed-select"></select>
-                <!-- Filtro por estado -->
-                <h3 class="filter-title">Filtrar por Estado</h3>
-                    <div class="filter-buttons-grid">
-                        <button id="Liked" class="filter-btn like-btn">
-                            <span class="filter-label">❤️ Favoritos</span>
-                            <span class="count">0</span>
-                        <!--  <button id="Disliked" class="filter-btn dislike-btn">
-                            <span class="filter-label">💔 No Favoritos</span>
-                            <span class="count">0</span>
-                        </button> -->
-                        </button>
+                <div class="filter-row">
+                    <label class="filter-sublabel">❤️ Favoritos</label>
+                    <label class="switch">
+                        <input type="checkbox" id="favSwitch">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
+                <div class="filter-group-vertical">
+                    <label class="filter-sublabel">Género</label>
+                    <div class="checkbox-group">
+                        <label class="custom-checkbox">
+                            <input type="checkbox" id="genderMale" value="Macho" checked>
+                            <span class="checkmark"></span> Macho
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" id="genderFemale" value="Hembra" checked>
+                            <span class="checkmark"></span> Hembra
+                        </label>
                     </div>
-            </div>
-        </div>
+                </div>
 
-        <!-- Mensaje de búsqueda sin resultados -->
-        <div class="no-results" id="noResults" style="display: none;">
-            <h3>No se encontraron perros</h3>
-            <p>Intenta ajustar tus filtros o añade más perros a la lista</p>
-            <div class="dog-search-error-image">
-                <img src="./images/sad-dog-2.png" alt="Perro meme triste">
-            </div>
-        </div>
+                <div class="filter-group-vertical">
+                    <div class="filter-row">
+                        <label class="filter-sublabel">Edad</label>
+                        <span id="ageDisplay" class="badge-count">Hasta 15 años</span>
+                    </div>
 
-        <!-- Lista de perros -->
-        <div id="dog-list" class="dog-grid"></div>
+                    <div class="range-container">
+                        <input type="range" id="ageSlider" min="1" max="15" value="15" class="range-slider">
+                        <div class="range-labels">
+                            <span>1</span>
+                            <span>5</span>
+                            <span>10</span>
+                            <span>15</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-group-vertical">
+                    <label class="filter-sublabel">Filtrar por Raza</label>
+                    <select id="filter-breed-list" class="breed-select full-width-select"></select>
+                </div>
+
+            </aside>
+
+            <div class="main-content">
+                <div class="no-results" id="noResults" style="display: none;">
+                    <h3>No se encontraron perros</h3>
+                    <p>Intenta ajustar tus filtros o añade más perros a la lista</p>
+                    <div class="dog-search-error-image">
+                        <img src="./images/sad-dog-2.png" alt="Perro meme triste">
+                    </div>
+                </div>
+
+                <div id="dog-list" class="dog-grid"></div>
+            </div>
+
+        </div>
     </div>
-
-    <!-- MODAL DE AUTENTICACIÓN -->
     <div id="authModal" class="modal-overlay hidden">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
-            
             <div id="loginFormContainer">
                 <h2>Bienvenido de nuevo</h2>
                 <form id="loginForm">
@@ -119,7 +143,6 @@
                 </form>
                 <p class="switch-text">¿No tienes cuenta? <span id="showSignUp">Regístrate aquí</span></p>
             </div>
-
             <div id="signupFormContainer" class="hidden">
                 <h2>Crea tu cuenta</h2>
                 <form id="signupForm">
@@ -132,9 +155,9 @@
         </div>
     </div>
 
-    <!-- SCRIPTS -->
     <script src="./js/api.js"></script>
     <script src="./js/perros.js"></script>
     <script type="module" src="./js/auth.js"></script>
 </body>
+
 </html>

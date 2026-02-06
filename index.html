@@ -174,7 +174,9 @@
             <div id="loginFormContainer">
                 <h2>Bienvenido de nuevo</h2>
                 <form id="loginForm">
+                    <p class="loginform__title">Email</p>
                     <input type="email" id="loginEmail" placeholder="Tu correo electrónico" required>
+                    <p class="loginform__title">Contraseña</p>
                     <input type="password" id="loginPassword" placeholder="Tu contraseña" required>
                     <button type="submit" class="btn-primary full-width">Iniciar Sesión</button>
                 </form>
@@ -182,10 +184,12 @@
             </div>
 
             <div id="signupFormContainer" class="hidden">
-                <h2>Crea tu cuenta</h2>
+                <h2 class="signupcontainer__title">Crea tu cuenta</h2>
                 <form id="signupForm">
-                    <input type="email" id="signupEmail" placeholder="Tu correo electrónico" required>
-                    <input type="password" id="signupPassword" placeholder="Crea una contraseña" required>
+                    <p class="signupform__title">Email</p>
+                    <input type="email" id="signupEmail" required>
+                    <p class="signupform__title">Contraseña</p>
+                    <input type="password" id="signupPassword" required>
                     <button type="submit" class="btn-primary full-width">Registrarse</button>
                 </form>
                 <p class="switch-text">¿Ya tienes cuenta? <span id="showLogin">Inicia sesión</span></p>

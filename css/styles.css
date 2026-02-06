@@ -902,6 +902,12 @@ h2 {
     text-decoration: underline;
 }
 
+.signupform__title .loginform_title {
+    margin-bottom: 15px;
+    
+}
+
+
 .hidden { display: none; }
 
 /* Responsive */
