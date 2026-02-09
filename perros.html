@@ -5,9 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perros Disponibles - Paw Conex</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="./css/perros.css">
 </head>
@@ -19,105 +17,135 @@
         <div class="organic-shape shape-3"></div>
     </div>
 
-    <div class="container">
+    <!--NAV BAR-->
+    <div class="navcontainer">
         <nav class="navbar">
-            <div class="logo-group">
+            <a href="index.html" class="logo-group">
                 <div class="logo-mark">
-                    <img src="./images/paws.png" alt="Logo" class="logo-icon">
+                    <img src="./images/dog-icon-white.svg" alt="Logo" class="logo-icon">
                 </div>
                 <span class="logo-text">Paw Conex</span>
-            </div>
+            </a>
             <div class="nav-links">
                 <a href="index.html">Inicio</a>
-                <a href="index.html#como-funciona">Cómo funciona</a>
                 <a href="perros.html" class="active">Perros disponibles</a>
-                <a href="index.html#contacto">Contacto</a>
+                <a href="#contacto">Contacto</a>
                 <button class="nav-button-login">Login</button>
                 <button class="nav-button-sign-up">Sign Up</button>
             </div>
         </nav>
+    </div>
 
-        <div class="dogs-header">
-            <h1>Perros Disponibles</h1>
-            <p class="dogs-header-subtitle">Explora una lista de adorables compañeros esperando un hogar</p>
+        <!-- BARRA STICKY CON CONTROLES -->
+        <div class="sticky-controls">
+            <div class="controls-wrapper">
+                <!-- Botón toggle filtros -->
+                <button class="filter-toggle-btn" id="filterToggleBtn">
+                    <div class="filter-mark">
+                        <img src="./images/filter-icon-black.svg" alt="Filter Icon" class="filter-icon">
+                    </div>
+                    <span>Filtros</span>
+                </button>
+
+                <!-- Buscador -->
+                <div class="sticky-search">
+                    <img src="./images/search-icon.svg" alt="Buscar" class="search-icon">
+                    <input type="search" id="searchInput" placeholder="Buscar por nombre..." />
+                </div>
+
+                <!-- Selector de raza para generar -->
+                <div class="breed-selector">
+                    <select id="breed-list"></select>
+                </div>
+
+                <!-- Botones de generar -->
+                <div class="generate-buttons">
+                    <button class="btn-generate btn-generate-single" id="add-1-dog">
+                        <span>Generar 1</span>
+                    </button>
+                    <button class="btn-generate btn-generate-multiple" id="add-5-dogs">
+                        <span>Generar 5</span>
+                    </button>
+                </div>
+            </div>
         </div>
 
+        <!-- LAYOUT PRINCIPAL -->
         <div class="layout-container">
-
-            <aside class="sidebar">
-
+            <!-- SIDEBAR DE FILTROS -->
+            <aside class="sidebar hidden" id="sidebar">
+                <!-- Selector de raza para filtrar -->
                 <div class="sidebar-section">
-                    <h3 class="filter-title">Selecciona una Raza</h3>
-                    <select id="breed-list" class="breed-select full-width-select"></select>
-
-                    <div class="sidebar-actions">
-                        <button class="action-btn-add action-btn-breed full-btn" id="add-1-dog">
-                            <span>Generar 1 Perro</span>
-                        </button>
-                        <button class="action-btn-add action-btn-breed full-btn" id="add-5-dogs">
-                            <span>Generar 5 Perros</span>
-                        </button>
-                    </div>
-                </div>
-
-                <hr class="sidebar-divider">
-
-                <div class="sidebar-section">
-                    <h3 class="filter-title">Filtros</h3>
-
-                    <div class="search-input-wrapper sidebar-search">
-                        <img src="./images/icon-blue-search-2.svg" alt="Buscar" class="search-icon">
-                        <input type="search" id="searchInput" placeholder="Buscar por nombre..." />
-                    </div>
-                </div>
-
-                <div class="filter-row">
-                    <label class="filter-sublabel">❤️ Favoritos</label>
-                    <label class="switch">
-                        <input type="checkbox" id="favSwitch">
-                        <span class="slider round"></span>
-                    </label>
-                </div>
-
-                <div class="filter-group-vertical">
-                    <label class="filter-sublabel">Género</label>
-                    <div class="checkbox-group">
-                        <label class="custom-checkbox">
-                            <input type="checkbox" id="genderMale" value="Macho" checked>
-                            <span class="checkmark"></span> Macho
-                        </label>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" id="genderFemale" value="Hembra" checked>
-                            <span class="checkmark"></span> Hembra
-                        </label>
-                    </div>
-                </div>
-
-                <div class="filter-group-vertical">
-                    <div class="filter-row">
-                        <label class="filter-sublabel">Edad</label>
-                        <span id="ageDisplay" class="badge-count">Hasta 15 años</span>
-                    </div>
-
-                    <div class="range-container">
-                        <input type="range" id="ageSlider" min="1" max="15" value="15" class="range-slider">
-                        <div class="range-labels">
-                            <span>1</span>
-                            <span>5</span>
-                            <span>10</span>
-                            <span>15</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="filter-group-vertical">
                     <label class="filter-sublabel">Filtrar por Raza</label>
-                    <select id="filter-breed-list" class="breed-select full-width-select"></select>
+                    <div class="filter-breed-select">
+                        <select id="filter-breed-list"></select>
+                    </div>
                 </div>
 
+                <div class="sidebar-divider"></div>
+
+                <!-- Género -->
+            <div class="sidebar-section">
+                    <label class="filter-sublabel">Género</label>
+                    <div class="gender-buttons">
+                        <button class="gender-btn active" id="genderMaleBtn" data-gender="male">
+                            ♂️ Macho
+                        </button>
+                        <button class="gender-btn active" id="genderFemaleBtn" data-gender="female">
+                            ♀️ Hembra
+                        </button>
+                    </div>
+            </div>
+
+                <div class="sidebar-divider"></div>
+
+                <!-- Edad -->
+                <div class="sidebar-section">
+                    <label class="filter-sublabel">Edad</label>
+                    <div class="age-checkboxes">
+                        <label class="age-checkbox-label">
+                            <input type="checkbox" id="agePuppy" value="0-1" checked>
+                            Cachorro (0-1 año)
+                        </label>
+                        <label class="age-checkbox-label">
+                            <input type="checkbox" id="ageYoung" value="1-3" checked>
+                            Joven (1-3 años)
+                        </label>
+                        <label class="age-checkbox-label">
+                            <input type="checkbox" id="ageAdult" value="3-15" checked>
+                            Adulto (3+ años)
+                        </label>
+                    </div>
+                </div>
+
+                <div class="sidebar-divider"></div>
+
+                <!-- Solo favoritos -->
+                <div class="sidebar-section">
+                    <div class="favorites-toggle">
+                        <div class="favorites-label">
+                            <span>❤️</span>
+                            <span>Solo Favoritos</span>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="favSwitch">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="sidebar-divider"></div>
+
+                <!-- Limpiar filtros -->
+                <button class="clear-filters-btn" id="clearFiltersBtn">
+                    <!--<span class="clear-icon">🗑️</span> -->
+                    <span>Limpiar Filtros</span>
+                </button>
             </aside>
 
+            <!-- CONTENIDO PRINCIPAL -->
             <div class="main-content">
+                <!-- Mensaje sin resultados -->
                 <div class="no-results" id="noResults" style="display: none;">
                     <h3>No se encontraron perros</h3>
                     <p>Intenta ajustar tus filtros o añade más perros a la lista</p>
@@ -126,11 +154,12 @@
                     </div>
                 </div>
 
+                <!-- Grid de perros -->
                 <div id="dog-list" class="dog-grid"></div>
             </div>
-
-        </div>
     </div>
+
+    <!-- MODAL DE AUTENTICACIÓN -->
     <div id="authModal" class="modal-overlay hidden">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
@@ -153,8 +182,9 @@
                 <p class="switch-text">¿Ya tienes cuenta? <span id="showLogin">Inicia sesión</span></p>
             </div>
         </div>
-    </div>
+    </main>
 
+    <!-- SCRIPTS -->
     <script src="./js/api.js"></script>
     <script src="./js/perros.js"></script>
     <script type="module" src="./js/auth.js"></script>

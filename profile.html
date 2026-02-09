@@ -18,20 +18,23 @@
         <div class="organic-shape shape-3"></div>
     </div>
 
-    <div class="container">
+    <!--NAV BAR-->
+    <div class="navcontainer">
         <nav class="navbar">
-            <div class="logo-group">
+            <a href="index.html" class="logo-group">
                 <div class="logo-mark">
-                    <img src="./images/paws.png" alt="Logo" class="logo-icon">
+                    <img src="./images/dog-icon-white.svg" alt="Logo" class="logo-icon">
                 </div>
                 <span class="logo-text">Paw Conex</span>
-            </div>
+            </a>
             <div class="nav-links">
-                <a href="index.html">Volver al Inicio</a>
-                <a href="perros.html">Ver Perros</a>
+                <a href="index.html">Inicio</a>
+                <a href="perros.html" class="active">Perros disponibles</a>
+                <a href="#contacto">Contacto</a>
                 <button id="btnLogout" class="nav-button-logout">Cerrar Sesión</button>
             </div>
         </nav>
+    </div>
 
         <section class="hero-section" style="display: block; text-align: center; margin-top: 50px;">
             <div class="badge">
@@ -56,6 +59,5 @@
     </div>
 
     <script type="module" src="./js/auth.js"></script>
-
 </body>
 </html>

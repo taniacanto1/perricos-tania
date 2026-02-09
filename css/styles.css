@@ -1,25 +1,72 @@
+/* ===========================
+    RESET CSS
+=========================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===========================
+    CUSTOM PROPERTIES 
+=========================== */
+:root {
+    /* --- Base Colors & Neutrals --- */
+    --ivory: #FFFEF9; /* white background */
+    --soft-beige: #E8DCC7;
+    --bg-off-white: #fafaf9; /* white background for nav bar */
+    --bg-btn-sage: #d8e9d44d; /* green background for buttons */
+    --charcoal: #2D2D2A; /* black for buttons */
+    --grey: #d3d2d2; /* grey border */
+    --warm-sand: #F5F1E8; /* organge for sections */
+
+    /* --- Greens (Primary Palette) --- */
+    --sage-green: #A8B5A0; /* border buttons */
+    --sage: #7c9473; /* green background for nav bar and buttons */   
+    --sage-dark: #5b6d54;
+    --deep-moss: #5F6F52;
+    
+    /* --- Accents & Tints --- */
+    --light-mint: #D4E7D7;
+    --mint: #d8e9d4;
+    --celadon: #b5c99a;
+
+    /* -- font family --*/
+    --font-jakarta: 'Plus Jakarta Sans', sans-serif;
+
+    /* --- Border --- */
+    --border-btn-green: 2px solid var(--sage);
+    --border-radius-btn: 25px /* redondeado botones */
+}
+/* ===========================
+    BASE STYLES
+=========================== */
+html, body {
+    width: 100%;
+    margin: 0;
+    overflow-x: hidden;
+}
+
 html {
     scroll-behavior: smooth;
 }
 
-:root {
-    --ivory: #FFFEF9;
-    --warm-sand: #F5F1E8;
-    --sage-green: #A8B5A0;
-    --deep-moss: #5F6F52;
-    --charcoal: #2D2D2A;
-    --grey: #d3d2d2;
-    --soft-beige: #E8DCC7;
-    --accent-terracotta: #C97C5D;
-    --light-mint: #D4E7D7;
-}
-
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-jakarta);
     background: var(--ivory);
     color: var(--charcoal);
-    overflow-x: hidden;
+    overflow-x: clip; 
     line-height: 1;
+}
+
+/* Contenedor con padding para el contenido */
+.content-wrapper {
+    padding: 0 40px;
+}
+
+/* Para la página de perros sin padding en el body */
+body.dogs-page {
+    padding: 0;
 }
 
 /* Organic Background */
@@ -78,23 +125,26 @@ body {
     }
 }
 
-/* Container */
-.container {
+/* ===========================
+    NAV BAR
+=========================== */
+
+.navcontainer {
     position: relative;
-    z-index: 1;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 50px 50px 100px;
+    z-index: 1000;
+    width: 100%;
+    background: var(--sage);
+    padding: 15px 40px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
 }
 
-/* Navbar */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 0;
-    margin-bottom: 20px;
-    animation: fadeInDown 0.8s ease-out;
+    width: 100%; 
+    max-width: none;  
 }
 
 @keyframes fadeInDown {
@@ -111,39 +161,39 @@ body {
 .logo-group {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 5px;
+    text-decoration: none;
 }
 
 .logo-mark {
-    width: 52px;
-    height: 52px;
-    background: linear-gradient(135deg, var(--sage-green), var(--deep-moss));
-    border-radius: 16px;
+    width: 50px; 
+    height: auto;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 26px;
-    box-shadow: 0 8px 24px rgba(95, 111, 82, 0.15);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer; 
+    transition: transform 0.3s ease; /* Suavidad al crecer */
 }
 
 .logo-mark:hover {
-    transform: rotate(-5deg) scale(1.05);
-    box-shadow: 0 12px 32px rgba(95, 111, 82, 0.25);
+    transform: scale(1.15);
+    box-shadow: none;
+    background: transparent;
 }
 
 .logo-mark img {
-    width: 75%;
+    width: 100%;
     height: auto;
     display: block;
 }
 
 .logo-text {
-    font-family: 'Sora', sans-serif;
-    font-size: 26px;
-    font-weight: 700;
-    color: var(--charcoal);
-    letter-spacing: -0.5px;
+    font-size: 1.3rem;
+    color: white;
 }
 
 .nav-links {
@@ -154,7 +204,7 @@ body {
 
 .nav-links a {
     text-decoration: none;
-    color: var(--charcoal);
+    color: var(--bg-off-white);
     font-size: 15px;
     font-weight: 500;
     transition: color 0.3s ease;
@@ -175,7 +225,7 @@ body {
 
 .nav-links a:hover,
 .nav-links a.active {
-    color: var(--deep-moss);
+    color: var(--bg-off-white);
 }
 
 .nav-links a:hover::after,
@@ -187,13 +237,13 @@ body {
     padding: 14px 32px;
     color: var(--charcoal);
     border: 2px solid var(--deep-moss);
-    border-radius: 50px;
+    border-radius: var(--border-radius-btn);
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 8px 24px rgba(45, 45, 42, 0.15);
-    background-color: transparent;
+    background-color: var(--bg-off-white);
 }
 
 .nav-button-login:hover {
@@ -205,7 +255,7 @@ body {
     padding: 14px 32px;
     font-size: 15px;
     font-weight: 600;
-    border-radius: 50px;
+    border-radius: var(--border-radius-btn);
     background-color: var(--charcoal);
     color: var(--ivory);
     border: 2px solid var(--charcoal);
@@ -217,15 +267,15 @@ body {
 .nav-button-sign-up:hover {
     transform: translateY(-2px);
     box-shadow: 0 12px 32px rgba(45, 45, 42, 0.25);
-    background-color: var(--deep-moss);
-    border-color: var(--deep-moss);
+    /*background-color: var(--deep-moss);*/
+    /* border-color: var(--deep-moss); */
 }
 
 .nav-button-logout {
     padding: 14px 32px;
     font-size: 15px;
     font-weight: 600;
-    border-radius: 50px;
+    border-radius: var(--border-radius-btn);
     background-color: var(--charcoal);
     color: var(--ivory);
     border: 2px solid var(--charcoal);
@@ -241,6 +291,28 @@ body {
     border-color: #cf5443;
 }
 
+.nav-button-login, 
+.nav-button-sign-up,
+.nav-button-logout {
+    padding: 10px 24px; 
+    font-size: 14px;
+}
+
+.container {
+    max-width: 1400px;
+    width: 100%;           
+    margin: 0 auto;        
+    padding: 0 40px;        
+    box-sizing: border-box;
+}
+
+/* Ajuste para móviles */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 20px;  
+    }
+}
+
 /* Hero Section */
 .hero-section {
     display: grid;
@@ -248,6 +320,7 @@ body {
     gap: 100px;
     align-items: center;
     margin-bottom: 140px;
+    margin-top: 0;
 }
 
 .hero-content {
@@ -284,7 +357,6 @@ body {
 }
 
 h1 {
-    font-family: 'Sora', sans-serif;
     font-size: 60px;
     font-weight: 800;
     line-height: 1.1;
@@ -322,7 +394,7 @@ h1 {
     background: linear-gradient(135deg, var(--deep-moss), var(--sage-green));
     color: white;
     border: none;
-    border-radius: 50px;
+    border-radius: var(--border-radius-btn);
     font-size: 17px;
     font-weight: 700;
     cursor: pointer;
@@ -360,7 +432,7 @@ h1 {
     background: white;
     color: var(--charcoal);
     border: 2px solid var(--soft-beige);
-    border-radius: 50px;
+    border-radius: var(--border-radius-btn);
     font-size: 17px;
     font-weight: 700;
     cursor: pointer;
@@ -466,7 +538,6 @@ h1 {
 }
 
 .card-content h3 {
-    font-family: 'Sora', sans-serif;
     font-size: 24px;
     font-weight: 700;
     color: var(--charcoal);
@@ -512,7 +583,9 @@ h1 {
     }
 }
 
-/* Stats Section */
+/* ===========================
+    STATS SECTION
+=========================== */
 .stats-wrapper {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -549,7 +622,6 @@ h1 {
 }
 
 .stat-number {
-    font-family: 'Sora', sans-serif;
     font-size: 52px;
     font-weight: 800;
     background: linear-gradient(135deg, var(--deep-moss), var(--sage-green));
@@ -566,7 +638,9 @@ h1 {
     font-weight: 500;
 }
 
-/* Features Section */
+/* ===========================
+    FEATURES SECTION
+=========================== */
 .features-section {
     margin-bottom: 140px;
 }
@@ -591,7 +665,6 @@ h1 {
 }
 
 h2 {
-    font-family: 'Sora', sans-serif;
     font-size: 56px;
     font-weight: 800;
     align-items: center;
@@ -665,7 +738,6 @@ h2 {
 }
 
 .feature-title {
-    font-family: 'Sora', sans-serif;
     font-size: 22px;
     font-weight: 700;
     color: var(--charcoal);
@@ -678,12 +750,14 @@ h2 {
     color: rgba(45, 45, 42, 0.7);
 }
 
-/* Process Section */
+/* ===========================
+    PRODCESS SECTION
+=========================== */
 .process-section {
     background: var(--warm-sand);
     border-radius: 48px;
     padding: 100px 80px;
-    margin-bottom: 140px;
+    margin-bottom: 90px;
     position: relative;
     overflow: hidden;
 }
@@ -743,7 +817,6 @@ h2 {
     background: linear-gradient(135deg, var(--deep-moss), var(--sage-green));
     color: white;
     border-radius: 50%;
-    font-family: 'Sora', sans-serif;
     font-size: 24px;
     font-weight: 800;
     margin-bottom: 24px;
@@ -751,7 +824,6 @@ h2 {
 }
 
 .step-title {
-    font-family: 'Sora', sans-serif;
     font-size: 21px;
     font-weight: 700;
     color: var(--charcoal);
@@ -764,10 +836,12 @@ h2 {
     color: rgba(45, 45, 42, 0.75);
 }
 
-/* CTA Section */
+/* ===========================
+    CTA SECTION
+=========================== */
 .cta-section {
     text-align: center;
-    padding: 80px 0;
+    padding: 30px 0;
 }
 
 .cta-section h2 {
@@ -824,7 +898,9 @@ h2 {
     box-shadow: 0 20px 56px rgba(95, 111, 82, 0.4);
 }
 
-/* Estilos del Modal */
+/* ===========================
+    MODAL SECTION
+=========================== */
 .modal-overlay {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -845,42 +921,113 @@ h2 {
 }
 
 .modal-content {
-    background: var(--ivory);
-    padding: 40px;
-    border-radius: 28px;
+    background: white; 
     width: 90%;
-    max-width: 400px;
+    max-width: 420px; /* Para que no sea gigante en PC */
+    padding: 40px;
+    border-radius: 32px; /* Bordes redondeados modernos */
+    
+    /* Sombra para que flote */
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    
     position: relative;
-    box-shadow: 0 24px 64px rgba(0,0,0,0.2);
-    transform: translateY(20px);
-    transition: transform 0.3s ease;
+    text-align: center;
+    
+    /* Animación de entrada suave */
+    animation: modalSlideUp 0.3s ease-out;
 }
 
-.modal-overlay.active .modal-content {
-    transform: translateY(0);
+/* Animación para que suba un poquito al aparecer */
+@keyframes modalSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Estilo de los "Boxes" (Inputs) */
+.modal-content input {
+    width: 100%;
+    padding: 14px 16px;
+    margin-bottom: 5px;
+    background-color: rgba(216, 233, 212, 0.3); 
+    
+    /* Borde verde solido */
+    border: 2px solid var(--sage); 
+    border-radius: 16px;
+    color: var(--charcoal);
+    font-family: var(--font-jakarta);
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.modal-content input::placeholder {
+    color: rgba(91, 109, 84, 0.5); /* Texto placeholder verdoso sutil */
+}
+
+/* Efecto al hacer clic en el input */
+.modal-content input:focus {
+    outline: none;
+    background-color: white; 
+    border-color: var(--deep-moss);
+    box-shadow: 0 4px 16px rgba(124, 148, 115, 0.2);
 }
 
 .close-modal {
     position: absolute;
-    top: 20px; right: 25px;
-    font-size: 28px;
+    top: 20px;
+    right: 25px;
+    font-size: 32px;
+    color: var(--sage); /* Color verde suave */
     cursor: pointer;
-    color: var(--charcoal);
+    transition: color 0.3s ease;
+    line-height: 1;
 }
 
-.modal-content input {
-    width: 100%;
-    padding: 15px;
-    margin-bottom: 15px;
-    border: 2px solid var(--soft-beige);
-    border-radius: 12px;
-    font-family: 'Inter', sans-serif;
-    font-size: 15px;
+.close-modal:hover {
+    color: var(--deep-moss); /* Verde oscuro al pasar el ratón */
+}
+
+.form-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--deep-moss); /* Verde oscuro para leerse bien */
+    margin-bottom: 8px;
+    margin-top: 16px;
+    display: block;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .modal-content input:focus {
     outline: none;
     border-color: var(--deep-moss);
+}
+
+/* Ajuste del botón dentro del modal */
+.modal-content .btn-primary {
+    margin-top: 24px;
+    background-color: var(--deep-moss);
+    color: white;
+    border: none;
+}
+
+.modal-content .btn-primary:hover {
+    background-color: var(--sage-dark);
+}
+
+/* Título del modal (Bienvenido / Crea tu cuenta) */
+.modal-content h2 {
+    font-size: 30px;
+    color: var(--charcoal);
+    margin-bottom: 30px;
+    margin-top: 0;
 }
 
 .full-width {
@@ -933,8 +1080,12 @@ h2 {
 }
 
 @media (max-width: 768px) {
-    .container {
-        padding: 30px 25px 80px;
+    .content-wrapper {
+        padding: 0 20px;
+    }
+    
+    .navcontainer {
+        padding: 20px 20px;
     }
 
     h1 {

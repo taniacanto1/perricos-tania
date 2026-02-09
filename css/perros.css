@@ -1,560 +1,409 @@
-/* Estilos específicos para la página de perros */
-
-.perros-page {
+.dogs-page {
     background: var(--ivory);
+    min-height: 100vh;
+    font-family: var(--font-jakarta);
 }
 
-/* Header de perros */
-.dogs-header {
-    text-align: center;
-    margin-top: 2%;
-    margin-bottom: 50px;
-    /*animation: fadeInDown 0.8s ease-out;*/
-}
-
-.dogs-header h1 {
-    font-family: 'Sora', sans-serif;
-    font-size: 40px;
-    font-weight: 800;
-    color: var(--charcoal);
-    margin-bottom: 16px;
-}
-
-/* Barra de búsqueda */
-
-.search-bar-container {
-    display: flex;
-    justify-content: left;
-    margin-bottom: 40px;
-}
-
-.search-input-wrapper {
-    position: relative;
+/* ===========================
+    BARRA STICKY (CONTROLES)
+=========================== */
+.sticky-controls {
+    position: sticky;
+    top: 0;
+    z-index: 90;
     width: 100%;
-    max-width: 600px;
+    background: var(--bg-off-white);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    padding: 15px 40px;
+    margin-bottom: 30px;
+    box-sizing: border-box; 
 }
-
-.search-icon {
-    position: absolute;
-    left: 24px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 20px;
-    pointer-events: none;
-    opacity: 0.5;
-}
-
-.search-input-wrapper input {
-    width: 100%;
-    padding: 18px 24px 18px 56px;
-    border: 2px solid var(--soft-beige);
-    border-radius: 50px;
-    font-size: 16px;
-    background: white;
-    color: var(--charcoal);
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-}
-
-.search-input-wrapper input:focus {
-    outline: none;
-    border-color: var(--sage-green);
-    box-shadow: 0 12px 32px rgba(168, 181, 160, 0.2);
-}
-
-.search-input-wrapper input::placeholder {
-    color: rgba(45, 45, 42, 0.4);
-}
-
-.nav-button {
-    padding: 14px 32px;
-    color: var(--charcoal);
-    border: 2px solid var(--deep-moss);
-    border-radius: 28px;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 8px 24px rgba(45, 45, 42, 0.15);
-    background-color: transparent;
-}
-
-.nav-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba(45, 45, 42, 0.25);
-}
-
-/* Botones de acción */
-
-.main-container {
-    display: flex;
-}
-
-.filter-subtitle {
-    font-size: 0.8rem;
-    font-style: italic;
-    margin-bottom: 10px;
-}
-
-.action-buttons {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-    margin-top: 20px;
-    /* animation: fadeInUp 0.8s ease-out 0.3s backwards; */
-}
-
-.action-btn-add {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 16px 32px;
-    border: none;
-    border-radius: 28px;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    font-family: 'Inter', sans-serif;
-}
-
-.action-btn-add:hover {
-    box-shadow: 0 8px 24px rgba(95, 111, 82, 0.25);
-}
-
-.action-btn-breed {
-    background: linear-gradient(135deg, var(--deep-moss), var(--sage-green));
-    color: white;
-    box-shadow: 0 8px 24px rgba(95, 111, 82, 0.25);
-}
-
-.action-btn-breed:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 32px rgba(95, 111, 82, 0.35);
-}
-
-.action-btn-filter {
-    padding: 14px 20px;
-    border-radius: 28px;
-    background: white;
-    color: var(--charcoal);
-    border: 2px solid var(--grey);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 15px;
-}
-
-.action-btn-filter:hover {
-    border-color: var(--sage-green);
-    /* transform: translateY(-2px); */
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
-}
-
-/* Contenedor de filtros */
 
 .controls-wrapper {
     display: flex;
-    align-items: flex-end;
-    /* Alinea los botones con la base del select */
-    gap: 20px;
+    align-items: center;
+    gap: 16px;
     flex-wrap: wrap;
-    /* Para que sea responsivo en móviles */
-    margin-bottom: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
-/* Ajustamos el grupo del selector para que no ocupe todo el ancho */
-.breed-selection-group {
+/* Botón de toggle filtros */
+.filter-toggle-btn {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: white;
+    border: var(--border-btn-green);
+    border-radius: 24px;
+    color: var(--charcoal);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.filter-toggle-btn:hover {
+    background: var(--mint);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(124, 148, 115, 0.15);
+}
+
+.filter-toggle-btn.active {
+    background: var(--sage);
+    color: white;
+    border-color: var(--sage-green);
+}
+
+.filter-icon {
+    width: 16px;  
+    height: 16px;
+    object-fit: contain;
+    display: block;
+}
+
+/* Buscador en sticky */
+.sticky-search {
+    flex: 1;
+    max-width: 700px;
+    position: relative;
+}
+
+.sticky-search .search-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.sticky-search input {
+    width: 100%;
+    padding: 14px 20px 14px 50px;
+    border: var(--border-btn-green);
+    border-radius: 24px;
+    font-size: 14px;
+    background: white;
+    color: var(--charcoal);
+    transition: all 0.3s ease;
+}
+
+.sticky-search input:focus {
+    outline: none;
+    box-shadow: 0 4px 12px rgba(124, 148, 115, 0.15);
+}
+
+.sticky-search input::placeholder {
+    color: rgba(45, 45, 42, 0.4);
+}
+
+/* Selector de raza en sticky */
+.breed-selector {
+    position: relative;
+    min-width: 180px;
+}
+
+.breed-selector select {
+    appearance: none;
+    width: 100%;
+    padding: 12px 40px 12px 16px;
+    border: 2px solid var(--sage);
+    border-radius: 24px;
+    background: white;
+    color: var(--charcoal);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.breed-selector select:hover {
+    border-color: var(--sage-green);
+}
+
+.breed-selector select:focus {
+    outline: none;
+    border-color: var(--sage-dark);
+    box-shadow: 0 0 0 3px rgba(124, 148, 115, 0.1);
+}
+
+.breed-selector::after {
+    content: '▼';
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--sage);
+    font-size: 12px;
+}
+
+/* Botones de generar */
+.generate-buttons {
+    display: flex;
+    gap: 12px;
+    margin-left: auto;
+}
+
+.btn-generate {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border: var(--border-btn-green);
+    border-radius: 24px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.btn-generate-single {
+    background: white;
+    color: var(--charcoal);
+}
+
+.btn-generate-single:hover {
+    background: var(--mint);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(124, 148, 115, 0.15);
+}
+
+.btn-generate-multiple {
+    background: white;
+    color: var(--charcoal);
+}
+
+.btn-generate-multiple:hover {
+    background: var(--mint);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(124, 148, 115, 0.15);
+}
+
+.generate-icon {
+    font-size: 18px;
+}
+
+/* ===========================
+    LAYOUT CONTAINER
+=========================== */
+.layout-container {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start; 
+    position: relative;
+    max-width: 1400px;
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+/* ===========================
+    SIDEBAR (FILTROS)
+=========================== */
+.sidebar {
+    width: 280px;
+    flex-shrink: 0;
+    background: white;
+    padding: 28px;
+    border-radius: 32px;
+    border: 1px solid rgba(168, 181, 160, 0.1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    
+    /* ACTIVACIÓN DEL STICKY */
+    position: sticky; 
+    position: -webkit-sticky; /* Para Safari */
+    top: 90px; 
+    max-height: calc(100vh - 100px); /* Evita que si el sidebar es muy alto no se pueda ver el final */
+    overflow-y: auto; /* Permite scroll interno si el sidebar es muy largo */
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Scrollbar personalizado para el sidebar */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: var(--mint);
+    border-radius: 10px;
+}
+
+/* Sidebar oculto */
+.sidebar.hidden {
+    width: 0;
+    padding: 0;
+    opacity: 0;
+    visibility: hidden;
+    margin-right: -30px;
+}
+
+/* Header del sidebar */
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.sidebar-header .filter-icon {
+    color: var(--sage);
+}
+
+.sidebar-header h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--sage-dark);
+}
+
+/* Secciones del sidebar */
+.sidebar-section {
+    margin-bottom: 20px;
+}
+
+.filter-sublabel {
+    font-size: 12px;
+    font-weight: 700;
+    color: rgba(45, 45, 42, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+/* Selector de raza del sidebar */
+.filter-breed-select {
+    position: relative;
+    width: 100%;
+}
+
+.filter-breed-select select {
+    appearance: none;
+    width: 100%;
+    padding: 12px 40px 12px 16px;
+    border: 2px solid rgba(168, 181, 160, 0.1);
+    border-radius: 20px;
+    background: rgba(216, 233, 212, 0.1);
+    color: var(--charcoal);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-breed-select select:hover {
+    border-color: var(--sage-green);
+}
+
+.filter-breed-select select:focus {
+    outline: none;
+    border-color: var(--sage);
+    box-shadow: 0 0 0 3px rgba(124, 148, 115, 0.1);
+}
+
+.filter-breed-select::after {
+    content: '▼';
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--sage);
+    font-size: 12px;
+}
+
+/* Botones de género */
+.gender-buttons {
+    display: flex;
     gap: 8px;
 }
 
-.filter-container {
-    background: white;
-    border-radius: 28px;
-    padding: 40px;
-    margin-bottom: 50px;
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(232, 220, 199, 0.6);
-    animation: slideDown 0.4s ease-out;
-}
-
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.filter-section {
-    margin-bottom: 32px;
-}
-
-.filter-section:last-child {
-    margin-bottom: 0;
-}
-
-.filter-title {
-    font-family: 'Sora', sans-serif;
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--charcoal);
-    margin-bottom: 10px;
-}
-
-/* Selector de razas */
-.breed-select {
-    width: auto;
-    border: 2px solid var(--grey);
-    border-radius: 28px;
-    font-size: 15px;
-    background: white;
-    color: var(--charcoal);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-    min-width: 200px;
-    padding: 14px 20px;
-}
-
-.breed-select:hover {
-    border-color: var(--sage-green);
-}
-
-.breed-select:focus {
-    outline: none;
-    border-color: var(--deep-moss);
-    box-shadow: 0 0 0 3px rgba(168, 181, 160, 0.2);
-}
-
-/* Grid de botones de filtro */
-.filter-buttons-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 12px;
-}
-
-.filter-btn {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 14px 20px;
-    border: 2px solid var(--soft-beige);
-    border-radius: 50px;
-    background: white;
-    color: var(--charcoal);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 15px;
-    font-weight: 600;
-    font-family: 'Inter', sans-serif;
-}
-
-.filter-btn:hover {
-    border-color: var(--sage-green);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-}
-
-.filter-btn.active {
-    background: linear-gradient(135deg, var(--deep-moss), var(--sage-green));
-    color: white;
-    border-color: transparent;
-    box-shadow: 0 8px 24px rgba(95, 111, 82, 0.3);
-}
-
-.filter-label {
+.gender-btn {
     flex: 1;
-}
-
-.filter-btn .count {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 28px;
-    height: 28px;
-    padding: 0 8px;
-    background: rgba(45, 45, 42, 0.1);
-    border-radius: 28px;
-    font-size: 13px;
-    font-weight: 700;
-}
-
-.filter-btn.active .count {
-    background: rgba(255, 255, 255, 0.25);
-}
-
-/* Mensaje sin resultados */
-.no-results {
-    text-align: center;
-    padding: 80px 40px;
-    animation: fadeInUp 0.6s ease-out;
-}
-
-.dog-search-error-image img {
-    width: 700px;
-    height: auto;
-}
-
-.no-results h3 {
-    font-family: 'Sora', sans-serif;
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--charcoal);
-    margin-bottom: 12px;
-}
-
-.no-results p {
-    font-size: 16px;
-    color: rgba(45, 45, 42, 0.6);
-}
-
-/* Grid de perros */
-.dog-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 32px;
-}
-
-/* Tarjeta de perro */
-.dog-card {
+    padding: 10px;
+    border: 2px solid rgba(168, 181, 160, 0.2);
+    border-radius: 16px;
     background: white;
-    border-radius: 28px;
-    overflow: hidden;
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
-    border: 2px solid var(--grey);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    animation: fadeInUp 0.6s ease-out backwards;
+    color: var(--charcoal);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
 }
 
-.dog-card:nth-child(1) {
-    animation-delay: 0.1s;
+.gender-btn:hover {
+    border-color: var(--sage-green);
+    background: rgba(216, 233, 212, 0.1);
 }
 
-.dog-card:nth-child(2) {
-    animation-delay: 0.15s;
+.gender-btn.active {
+    background: rgba(124, 148, 115, 0.15);
+    border-color: var(--sage);
+    color: var(--sage-dark);
 }
 
-.dog-card:nth-child(3) {
-    animation-delay: 0.2s;
-}
-
-.dog-card:nth-child(4) {
-    animation-delay: 0.25s;
-}
-
-.dog-card:nth-child(5) {
-    animation-delay: 0.3s;
-}
-
-.dog-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.14);
-}
-
-.dog-card img {
-    width: 100%;
-    height: 240px;
-    object-fit: cover;
-    object-position: center;
-}
-
-.dog-card-header {
-    display: flex;
-    justify-content: space-between;
-    /* Empuja el botón al extremo derecho */
-    align-items: flex-start;
-    /* Alinea el botón con la parte superior del texto */
-    margin-bottom: 15px;
-}
-
-.header-text {
+/* Checkboxes de edad */
+.age-checkboxes {
     display: flex;
     flex-direction: column;
-    /* Mantiene el nombre arriba y la raza abajo */
+    gap: 10px;
 }
 
-.dog-card-content {
-    padding: 15px;
-}
-
-.dog-card-title {
-    font-family: 'Sora', sans-serif;
-    font-size: 24px;
-    color: var(--charcoal);
-    margin-bottom: 2px;
-    padding-right: 10px;
-}
-
-.dog-breed {
-    font-size: 13px;
-    color: rgba(45, 45, 42, 0.6);
-    text-transform: uppercase;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    margin-bottom: 12px;
-}
-
-.dog-info {
-    display: flex;
-    gap: 16px;
-    margin-bottom: 20px;
-    font-size: 14px;
-    color: rgba(45, 45, 42, 0.7);
-}
-
-.dog-info span {
+.age-checkbox-label {
     display: flex;
     align-items: center;
-    gap: 6px;
-}
-
-/* Botones de acción de la tarjeta */
-.dog-card-actions {
-    display: flex;
-}
-
-.heart-btn {
-    width: 48px;
-    height: 48px;
-    border: 2px solid var(--grey);
-    border-radius: 50%;
-    background: white;
-    font-size: 24px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.heart-btn:hover {
-    transform: scale(1.1);
-    border-color: var(--sage-green);
-}
-
-.heart-btn.liked {
-    background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
-    border-color: transparent;
-    transform: scale(1.15);
-    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
-}
-
-.heart-btn.disliked {
-    background: linear-gradient(135deg, #a8b5a0, #5f6f52);
-    border-color: transparent;
-    transform: scale(1.15);
-    box-shadow: 0 6px 20px rgba(95, 111, 82, 0.4);
-}
-
-/* LAYOUT SIDEBAR */
-
-.layout-container {
-    display: flex;
-    gap: 40px;
-    align-items: flex-start;
-    margin-bottom: 80px;
-    position: relative;
-    z-index: 2;
-}
-
-/* Estilo del Sidebar */
-.sidebar {
-    width: 300px;
-    flex-shrink: 0;
-    background: white;
-    padding: 30px;
-    border-radius: 28px;
-    border: 1px solid rgba(232, 220, 199, 0.6);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
-    position: sticky;
-    /* Hace que el menú baje al hacer scroll */
-    top: 20px;
-}
-
-.main-content {
-    flex-grow: 1;
-    width: 100%;
-}
-
-.sidebar-section {
-    margin-bottom: 25px;
-}
-
-.sidebar-divider {
-    border: 0;
-    border-top: 1px solid var(--soft-beige);
-    margin: 20px 0;
-}
-
-/* Ajustes de Inputs existentes para que quepan en el Sidebar */
-.sidebar-search input {
-    padding: 12px 12px 12px 45px;
     font-size: 14px;
+    color: var(--charcoal);
+    font-weight: 500;
+    transition: color 0.2s ease;
 }
 
-.sidebar-search .search-icon {
-    left: 15px;
-    font-size: 16px;
+.age-checkbox-label:hover {
+    color: var(--sage-dark);
 }
 
-/* Selectores y Botones anchos */
-.full-width-select {
-    width: 100%;
-    min-width: 0;
-    padding: 10px 15px;
-    box-sizing: border-box;
-    margin-bottom: 10px;
+.age-checkbox-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    accent-color: var(--sage);
+    cursor: pointer;
+    border-radius: 4px;
 }
 
-.full-btn {
-    width: 100%;
-    justify-content: center;
-    margin-top: 10px;
-}
-
-/* Títulos y Etiquetas */
-.filter-sublabel {
-    font-size: 14px;
-    font-weight: 600;
-    color: rgba(45, 45, 42, 0.7);
-    margin-bottom: 10px;
-    display: block;
-    font-family: 'Inter', sans-serif;
-}
-
-.filter-row {
+/* Toggle de favoritos */
+.favorites-toggle {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
+    padding: 14px 16px;
+    border-radius: 16px;
+    transition: all 0.3s ease;
 }
 
-.filter-group-vertical {
-    margin-bottom: 25px;
+.favorites-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--charcoal);
 }
 
-/* Badge (Etiqueta) para la edad */
-.badge-count {
-    background: var(--warm-sand);
-    padding: 4px 10px;
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--deep-moss);
-}
-
-/* --- NUEVOS COMPONENTES (Toggle, Checkbox, Slider) --- */
-
-/* Toggle Switch (Favoritos) */
+/* Toggle switch */
 .switch {
     position: relative;
     display: inline-block;
@@ -575,7 +424,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--grey);
+    background-color: #e0e0e0;
     transition: .4s;
     border-radius: 34px;
 }
@@ -592,192 +441,371 @@
     border-radius: 50%;
 }
 
-input:checked+.slider {
-    background-color: var(--sage-green);
+input:checked + .slider {
+    background-color: #ff6b6b;
 }
 
-input:checked+.slider:before {
+input:checked + .slider:before {
     transform: translateX(20px);
 }
 
-/* Custom Checkboxes (Género) */
-.checkbox-group {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.custom-checkbox {
+/* Botón de limpiar filtros */
+.clear-filters-btn {
+    width: 100%;
+    padding: 14px;
+    background: rgba(255, 107, 107, 0.05);
+    color: #d63031;
+    border: 2px solid rgba(255, 107, 107, 0.2);
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
-    cursor: pointer;
-    font-size: 14px;
-    color: var(--charcoal);
-    font-weight: 500;
+    justify-content: center;
+    gap: 8px;
 }
 
-.custom-checkbox input {
-    display: none;
+.clear-filters-btn:hover {
+    background: rgba(255, 107, 107, 0.1);
+    border-color: rgba(255, 107, 107, 0.4);
+    transform: translateY(-2px);
 }
 
-.checkmark {
-    height: 18px;
-    width: 18px;
-    background-color: white;
-    border: 2px solid var(--soft-beige);
-    border-radius: 4px;
-    margin-right: 10px;
-    position: relative;
-    transition: 0.2s;
+.clear-icon {
+    font-size: 18px;
 }
 
-.custom-checkbox input:checked~.checkmark {
-    background-color: var(--deep-moss);
-    border-color: var(--deep-moss);
+/* Divider */
+.sidebar-divider {
+    border: 0;
+    border-top: 1px solid rgba(168, 181, 160, 0.15);
+    margin: 20px 0;
 }
 
-.checkmark:after {
-    content: "";
+/* ===========================
+    CONTENIDO PRINCIPAL
+=========================== */
+.main-content {
+    flex: 1;
+    min-width: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===========================
+    GRID DE PERROS
+=========================== */
+.dog-grid {
+    display: grid;
+    gap: 20px;
+    /* Por defecto intentamos 4 columnas si cabe */
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Cuando el sidebar está oculto forzamos 4 columnas fijas */
+.sidebar.hidden ~ .main-content .dog-grid {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* ===========================
+    TARJETAS DE PERROS
+=========================== */
+.dog-card {
+    background: white;
+    border-radius: 32px;
+    overflow: hidden;
+    border: 1px solid rgba(168, 181, 160, 0.08);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: fadeInUp 0.6s ease-out backwards;
+    padding: 0;
+}
+
+
+.dog-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Stagger animation */
+.dog-card:nth-child(1) { animation-delay: 0.05s; }
+.dog-card:nth-child(2) { animation-delay: 0.1s; }
+.dog-card:nth-child(3) { animation-delay: 0.15s; }
+.dog-card:nth-child(4) { animation-delay: 0.2s; }
+.dog-card:nth-child(5) { animation-delay: 0.25s; }
+.dog-card:nth-child(6) { animation-delay: 0.3s; }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Contenedor de imagen con botón de favorito */
+.dog-card-image-wrapper {
+    position: relative; /* Necesario para posicionar el botón de like dentro */
+    width: 100%;        /* Ocupa todo el ancho de la tarjeta */
+    aspect-ratio: 4/3;  /* Mantengo el formato horizontal que pediste antes */
+    overflow: hidden;
+}
+
+.dog-card-image-wrapper img {
+    width: 100%;         
+    height: 100%;
+    object-fit: cover;   /* Cubre todo el espacio sin deformarse (recorta si hace falta) */
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Gradiente sobre la imagen al hover */
+.dog-card-image-overlay {
     position: absolute;
-    display: none;
-    left: 5px;
-    top: 1px;
-    width: 4px;
-    height: 9px;
-    border: solid white;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
+    inset: 0;
+    background: linear-gradient(to top, rgba(124, 148, 115, 0.3), transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
 }
 
-.custom-checkbox input:checked~.checkmark:after {
-    display: block;
-}
-
-/* Range Slider (Edad) */
-.range-slider {
-    width: 100%;
-    accent-color: var(--deep-moss);
-    cursor: pointer;
-    margin-top: 5px;
-}
-
-/* --- ESTILOS DE LA ESCALA DE EDAD --- */
-
-.range-container {
-    position: relative;
-    padding-bottom: 5px;
-}
-
-.range-labels {
+/* Botón de favorito */
+.heart-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid var(--grey);
     display: flex;
-    justify-content: space-between;
-    margin-top: 8px;
-    padding: 0 2px; /* Pequeño ajuste para alinear con el círculo del slider */
-}
-
-.range-labels span {
-    font-size: 12px;
-    color: rgba(45, 45, 42, 0.5); /* Gris suave */
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    position: relative;
-}
-
-/* Opcional: Pequeñas líneas verticales sobre los números */
-.range-labels span::before {
-    content: '';
-    position: absolute;
-    top: -6px; /* Sube la rayita hacia la barra */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 1px;
-    height: 4px;
-    background-color: rgba(45, 45, 42, 0.2);
-}
-
-/* Mejora visual de la barra (asegura que se rellene de verde) */
-.range-slider {
-    width: 100%;
-    height: 6px;
-    border-radius: 5px;
-    accent-color: var(--deep-moss); /* Esto pinta el relleno de verde automáticamente en navegadores modernos */
-    background: #e0e0e0;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    font-size: 20px;
 }
 
-/* Responsive para Móvil */
+.heart-btn:hover {
+    transform: scale(1.1);
+    border-color: var(--sage-green);
+}
+
+.heart-btn.liked {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+    border-color: transparent;
+    transform: scale(1.15);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+.heart-btn.liked:hover {
+    transform: scale(1.2);
+}
+
+/* Contenido de la tarjeta */
+.dog-card-content {
+    padding: 14px;
+    margin: 5px;
+}
+
+.dog-card-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 4px;
+}
+
+.dog-breed {
+    font-size: 11px;
+    color: rgba(45, 45, 42, 0.5);
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    margin-bottom: 12px;
+    margin-top: 10px;
+}
+
+/* Información adicional (género y edad) */
+.dog-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: rgba(45, 45, 42, 0.7);
+    font-weight: 500;
+}
+
+.dog-info span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.info-divider {
+    width: 1px;
+    height: 14px;
+    background: rgba(45, 45, 42, 0.2);
+}
+
+/* Botón de "Conocer más" */
+.meet-btn {
+    width: 100%;
+    padding: 12px;
+    background: var(--bg-btn-sage);
+    border: none;
+    border-radius: 20px;
+    color: var(--sage-dark);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.meet-btn:hover {
+    background: var(--sage);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(124, 148, 115, 0.3);
+}
+
+/* ===========================
+    MENSAJE SIN RESULTADOS
+=========================== */
+.no-results {
+    text-align: center;
+    padding: 5px 40px;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.no-results h3 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 12px;
+}
+
+.no-results p {
+    font-size: 16px;
+    color: rgba(45, 45, 42, 0.6);
+    margin-bottom: 30px;
+}
+
+.dog-search-error-image img {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    border-radius: 24px;
+}
+
+/* ===========================
+    RESPONSIVE
+=========================== */
+
+/* Tablets */
+@media (max-width: 1200px) {
+    .dog-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .sidebar.hidden ~ .main-content .dog-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .sticky-controls {
+        padding: 16px 40px;
+    }
+}
+
+/* Móviles grandes */
 @media (max-width: 900px) {
     .layout-container {
         flex-direction: column;
     }
-
+    
     .sidebar {
         width: 100%;
         position: relative;
         top: 0;
-        box-sizing: border-box;
+        max-height: none;
         margin-bottom: 30px;
     }
-
-    .dog-grid {
-        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    
+    .sidebar.hidden {
+        display: none;
     }
-}
-
-/* Responsive para página de perros */
-@media (max-width: 1024px) {
-    .dog-grid {
-        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-        gap: 24px;
-    }
-
-    .filter-buttons-grid {
+    
+    .dog-grid,
+    .sidebar.hidden ~ .main-content .dog-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+    
+    .controls-wrapper {
+        gap: 12px;
+    }
+    
+    .generate-buttons {
+        width: 100%;
+        margin-left: 0;
+    }
+    
+    .btn-generate {
+        flex: 1;
+        justify-content: center;
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+    
+    .sticky-controls {
+        padding: 12px 30px;
+    }
 }
 
-@media (max-width: 768px) {
-    .perros-header h1 {
-        font-size: 42px;
+/* Móviles pequeños */
+@media (max-width: 600px) {
+    .dogs-header h1 {
+        font-size: 32px;
     }
-
-    .action-buttons {
+    
+    .dog-grid,
+    .sidebar.hidden ~ .main-content .dog-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .controls-wrapper {
         flex-direction: column;
         align-items: stretch;
     }
-
-    .action-btn {
+    
+    .sticky-search {
+        max-width: 100%;
+    }
+    
+    .breed-selector {
+        width: 100%;
+    }
+    
+    .generate-buttons {
+        flex-direction: column;
+    }
+    
+    .filter-toggle-btn {
         width: 100%;
         justify-content: center;
     }
-
-    .filter-container {
-        padding: 24px;
+    
+    .sticky-controls {
+        padding: 12px 20px;
     }
-
-    .filter-buttons-grid {
-        grid-template-columns: 1fr;
+    
+    .dog-card-title {
+        font-size: 20px;
     }
-
-    .dog-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .search-input-wrapper {
-        max-width: 100%;
-    }
-}
-
-.filter-container .search-bar-container {
-    margin-bottom: 20px;
-    width: 100%;
-}
-
-.filter-container .search-input-wrapper {
-    max-width: 100%;
-}
-
-.filter-container input[type="search"] {
-    box-shadow: none;
-    border: 2px solid var(--soft-beige);
 }

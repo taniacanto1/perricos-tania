@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paw conex - Encuentra tu Compañero Ideal</title>
     <link
-        href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="./css/styles.css">
 </head>
@@ -17,26 +17,25 @@
         <div class="organic-shape shape-2"></div>
         <div class="organic-shape shape-3"></div>
     </div>
-    
+
     <!--NAV BAR-->
-    <div class="container">
+    <div class="navcontainer">
         <nav class="navbar">
-            <div class="logo-group">
+            <a href="index.html" class="logo-group">
                 <div class="logo-mark">
-                    <img src="./images/paws.png" alt="Logo" class="logo-icon">
+                    <img src="./images/dog-icon-white.svg" alt="Logo" class="logo-icon">
                 </div>
                 <span class="logo-text">Paw Conex</span>
-            </div>
+            </a>
             <div class="nav-links">
-                <a href="index.html" class="active">Inicio</a>
-                <a href="#como-funciona">Cómo funciona</a>
-                <a href="perros.html">Perros disponibles</a>
+                <a href="index.html" class="active">Inicio</a>  <a href="perros.html">Perros disponibles</a>
                 <a href="#contacto">Contacto</a>
                 <button class="nav-button-login">Login</button>
                 <button class="nav-button-sign-up">Sign Up</button>
             </div>
         </nav>
-        
+    </div>
+    <div class="container">
         <!--SECCIÓN PRINCIPAL-->
         <section class="hero-section">
             <div class="hero-content">
@@ -51,17 +50,13 @@
                     perro ideal.
                 </p>
                 <div class="cta-buttons">
-                    <button class="btn-primary">
-                        <span>Cómo funciona</span>
-                        <span>▶</span>
-                    </button>
                     <button class="btn-secondary">
                         <span>Realizar test</span>
                         <span>▶</span>
                     </button>
                 </div>
             </div>
-            
+
             <!--CARDS FLOTANTES-->
             <div class="hero-visual">
                 <div class="floating-card card-main">
@@ -101,7 +96,7 @@
                 </div>
             </div>
         </section>
-        
+
         <!--STATS-->
         <section class="stats-wrapper">
             <div class="stat-box">
@@ -121,7 +116,7 @@
                 <div class="stat-label">Minutos de Test</div>
             </div>
         </section>
-        
+
         <!--EXPLICACIÓN PROCESO-->
         <section class="process-section" id="como-funciona">
             <div class="process-content">
@@ -154,7 +149,7 @@
                 </div>
             </div>
         </section>
-        
+
         <!--BÚSQUEDA MANUAL-->
         <section class="cta-section">
             <h2>Empieza tu búsqueda hoy</h2>
@@ -165,31 +160,37 @@
             </button>
         </section>
     </div>
-
     <!-- MODAL DE AUTENTICACIÓN -->
     <div id="authModal" class="modal-overlay hidden">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
-            
+
             <div id="loginFormContainer">
                 <h2>Bienvenido de nuevo</h2>
                 <form id="loginForm">
-                    <p class="loginform__title">Email</p>
-                    <input type="email" id="loginEmail" placeholder="Tu correo electrónico" required>
-                    <p class="loginform__title">Contraseña</p>
-                    <input type="password" id="loginPassword" placeholder="Tu contraseña" required>
+                    <p class="form-label">Email</p>
+                    <input type="email" id="loginEmail" placeholder="ejemplo@correo.com" required>
+                    
+                    <p class="form-label">Contraseña</p>
+                    <input type="password" id="loginPassword" placeholder="******" required>
+                    
                     <button type="submit" class="btn-primary full-width">Iniciar Sesión</button>
                 </form>
                 <p class="switch-text">¿No tienes cuenta? <span id="showSignUp">Regístrate aquí</span></p>
             </div>
 
             <div id="signupFormContainer" class="hidden">
-                <h2 class="signupcontainer__title">Crea tu cuenta</h2>
+                <h2>Crea tu cuenta</h2>
                 <form id="signupForm">
-                    <p class="signupform__title">Email</p>
-                    <input type="email" id="signupEmail" required>
-                    <p class="signupform__title">Contraseña</p>
-                    <input type="password" id="signupPassword" required>
+                    <p class="form-label">Nombre</p>
+                    <input type="text" id="signupName" placeholder="Tu nombre completo" required>
+
+                    <p class="form-label">Email</p>
+                    <input type="email" id="signupEmail" placeholder="ejemplo@correo.com" required>
+                    
+                    <p class="form-label">Contraseña</p>
+                    <input type="password" id="signupPassword" placeholder="Crea una contraseña segura" required>
+                    
                     <button type="submit" class="btn-primary full-width">Registrarse</button>
                 </form>
                 <p class="switch-text">¿Ya tienes cuenta? <span id="showLogin">Inicia sesión</span></p>
@@ -201,4 +202,5 @@
     <script src="./js/main.js"></script>
     <script type="module" src="./js/auth.js"></script>
 </body>
+
 </html>

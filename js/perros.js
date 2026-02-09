@@ -18,6 +18,18 @@ let perricoId = 0;
 let selectedBreedForAdd = ""; // Raza seleccionada para añadir perros
 
 /* -------------------------
+  SIDEBAR TOGGLE
+------------------------- */
+
+const sidebar = document.getElementById('sidebar');
+const filterToggleBtn = document.getElementById('filterToggleBtn');
+
+filterToggleBtn.addEventListener('click', () => {
+  sidebar.classList.toggle('hidden');
+  filterToggleBtn.classList.toggle('active');
+});
+
+/* -------------------------
   RENDER PERRICOS
 ------------------------- */
 
@@ -31,27 +43,27 @@ function renderPerricoArray(arrayToRender = perricosArray) {
 
     dogList.innerHTML += `
     <div class="dog-card">
-      <img src="${dog.image}" alt="${dog.name}" />
+      <div class="dog-card-image-wrapper">
+        <img src="${dog.image}" alt="${dog.name}" />
+        <div class="dog-card-image-overlay"></div>
+        <button class="heart-btn ${likeClass}" onclick="window.likeDislike(${dog.id}, event)">
+          ❤️
+        </button>
+      </div>
   
       <div class="dog-card-content">
-        <div class="dog-card-header">
-          <div class="header-text">
-            <h3 class="dog-card-title">${dog.name}</h3>
-              <p class="dog-breed">${breedFormatted}</p>
+        <h3 class="dog-card-title">${dog.name}</h3>
+        <p class="dog-breed">${breedFormatted}</p>
+        
+        <div class="dog-info">
+          <span>${dog.gender === "Macho" ? "♂️" : "♀️"} ${dog.gender}</span>
+          <span class="info-divider"></span>
+          <span>${dog.age} ${dog.age === 1 ? "año" : "años"}</span>
         </div>
-      
-        <div class="dog-card-actions">
-          <button class="heart-btn ${likeClass}" onclick="window.likeDislike(${dog.id}, event)">❤️</button>
-        </div>
+        
+        <button class="meet-btn">Conocer más</button>
       </div>
-
-      <div class="dog-info">
-        <span>${dog.gender === "Macho" ? "♂️" : "♀️"} ${dog.gender}</span>
-        <span>|</span>
-        <span>${dog.age} ${dog.age === 1 ? "año" : "años"}</span>
-        </div>
-        </div>
-      </div>`;
+    </div>`;
   });
 }
 
@@ -97,7 +109,7 @@ const createPerricoObject = async () => {
 const add1Perrico = async () => {
   const nuevoPerrico = await createPerricoObject();
   perricosArray.push(nuevoPerrico);
-  applyFilters(); // Re-aplicar filtros automáticamente
+  applyFilters();
 };
 
 const add5Perricos = async () => {
@@ -105,7 +117,7 @@ const add5Perricos = async () => {
     const nuevoPerrico = await createPerricoObject();
     perricosArray.push(nuevoPerrico);
   }
-  applyFilters(); // Re-aplicar filtros automáticamente
+  applyFilters();
 };
 
 /* -------------------------
@@ -139,10 +151,15 @@ function applyFilters() {
   const searchText = document.getElementById("searchInput").value.toLowerCase().trim();
   const onlyFavorites = document.getElementById("favSwitch").checked;
   const selectedBreed = document.getElementById("filter-breed-list").value;
-  const maxAge = parseInt(document.getElementById("ageSlider").value);
   
-  const showMale = document.getElementById("genderMale").checked;
-  const showFemale = document.getElementById("genderFemale").checked;
+  // Género - usando botones
+  const showMale = document.getElementById("genderMaleBtn").classList.contains("active");
+  const showFemale = document.getElementById("genderFemaleBtn").classList.contains("active");
+
+  // Edad - usando checkboxes
+  const agePuppy = document.getElementById("agePuppy").checked;
+  const ageYoung = document.getElementById("ageYoung").checked;
+  const ageAdult = document.getElementById("ageAdult").checked;
 
   // 2. Filtrar el array
   const filteredList = perricosArray.filter((dog) => {
@@ -161,16 +178,19 @@ function applyFilters() {
       return false;
     }
 
-    // D. Filtro Edad (Menor o igual a la seleccionada)
-    if (dog.age > maxAge) {
-      return false;
-    }
-
-    // E. Filtro Género
+    // D. Filtro Género
     if (dog.gender === "Macho" && !showMale) return false;
     if (dog.gender === "Hembra" && !showFemale) return false;
 
-    return true; // Si pasa todas las validaciones, se muestra
+    // E. Filtro Edad
+    let ageMatch = false;
+    if (agePuppy && dog.age >= 0 && dog.age <= 1) ageMatch = true;
+    if (ageYoung && dog.age > 1 && dog.age <= 3) ageMatch = true;
+    if (ageAdult && dog.age > 3) ageMatch = true;
+    
+    if (!ageMatch) return false;
+
+    return true;
   });
 
   // 3. Renderizar o mostrar mensaje "Sin resultados"
@@ -185,9 +205,8 @@ function applyFilters() {
     renderPerricoArray(filteredList);
   }
   
-  // Nota: Si el array original está vacío (al inicio), no mostrar mensaje de error
   if (perricosArray.length === 0) {
-      noResults.style.display = "none";
+    noResults.style.display = "none";
   }
 }
 
@@ -199,13 +218,13 @@ async function renderBreeds() {
   const breedsObject = await getAllBreeds();
   const breedsNames = Object.keys(breedsObject);
 
-  // 1. Selector para AÑADIR perros (Generar)
+  // 1. Selector para AÑADIR perros (Sticky bar)
   const addBreedList = document.querySelector("#breed-list");
   if (addBreedList) {
     addBreedList.innerHTML = "";
     const defaultOption = document.createElement("option");
     defaultOption.value = "";
-    defaultOption.textContent = "Todas las razas (aleatorio)";
+    defaultOption.textContent = "Todas las razas";
     addBreedList.appendChild(defaultOption);
 
     breedsNames.forEach(breed => {
@@ -235,6 +254,51 @@ async function renderBreeds() {
 }
 
 /* -------------------------
+  BOTONES DE GÉNERO
+------------------------- */
+
+const genderMaleBtn = document.getElementById("genderMaleBtn");
+const genderFemaleBtn = document.getElementById("genderFemaleBtn");
+
+genderMaleBtn.addEventListener("click", () => {
+  genderMaleBtn.classList.toggle("active");
+  applyFilters();
+});
+
+genderFemaleBtn.addEventListener("click", () => {
+  genderFemaleBtn.classList.toggle("active");
+  applyFilters();
+});
+
+/* -------------------------
+  LIMPIAR FILTROS
+------------------------- */
+
+const clearFiltersBtn = document.getElementById("clearFiltersBtn");
+
+clearFiltersBtn.addEventListener("click", () => {
+  // Resetear búsqueda
+  document.getElementById("searchInput").value = "";
+  
+  // Resetear favoritos
+  document.getElementById("favSwitch").checked = false;
+  
+  // Resetear raza
+  document.getElementById("filter-breed-list").value = "";
+  
+  // Resetear género (activar ambos)
+  genderMaleBtn.classList.add("active");
+  genderFemaleBtn.classList.add("active");
+  
+  // Resetear edad (marcar todos)
+  document.getElementById("agePuppy").checked = true;
+  document.getElementById("ageYoung").checked = true;
+  document.getElementById("ageAdult").checked = true;
+  
+  applyFilters();
+});
+
+/* -------------------------
   EVENT LISTENERS
 ------------------------- */
 
@@ -242,14 +306,11 @@ async function renderBreeds() {
 document.getElementById("searchInput").addEventListener("input", applyFilters);
 document.getElementById("favSwitch").addEventListener("change", applyFilters);
 document.getElementById("filter-breed-list").addEventListener("change", applyFilters);
-document.getElementById("genderMale").addEventListener("change", applyFilters);
-document.getElementById("genderFemale").addEventListener("change", applyFilters);
 
-// Listener para el Slider de Edad
-document.getElementById("ageSlider").addEventListener("input", (e) => {
-  document.getElementById("ageDisplay").textContent = e.target.value + " años";
-  applyFilters();
-});
+// Checkboxes de edad
+document.getElementById("agePuppy").addEventListener("change", applyFilters);
+document.getElementById("ageYoung").addEventListener("change", applyFilters);
+document.getElementById("ageAdult").addEventListener("change", applyFilters);
 
 // Listener para seleccionar raza a GENERAR
 const breedListAdd = document.querySelector("#breed-list");
